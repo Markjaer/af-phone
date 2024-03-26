@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    color-scheme: unset !important;
+    --primary-color: 2, 62, 125;
+    --secondary-color: 0, 18, 51;
+    --accent-color: 3, 7, 30;
+
+    --white-color: 255, 255, 255;
+    --black-color: 0, 0, 0;
+    --text-color: 165, 165, 165;
+    --ani-color: 0, 255, 255;
+
+    --bs-border-radius: 5px;
+    --bs-border-radius-xxl: var(--bs-border-radius);
+    --bs-border-radius-xl: var(--bs-border-radius);
+    --bs-border-radius-lg: var(--bs-border-radius);
+    --bs-border-radius-md: var(--bs-border-radius);
+    --bs-border-radius-sm: var(--bs-border-radius);
+    
+    --transition: 150ms;
+}
+
+html, body {
+    height: 100%;
+}
+
+* {
+    color: rgba(var(--white-color));
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+}
+
+p {
+    margin: 0;
+    color: rgba(var(--text-color), 100%);
+    font-weight: 300;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: rgba(var(--white-color), 100%) !important;
+    text-shadow: 0 0 10px rgba(var(--white-color), 35%);
+    margin: 0;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: transparent !important;
+}
+
+/* EXTRA START */
+.inset-0 {
+    inset: 0;
+}
+
+.bg-custom-primary {
+    background-color: rgba(var(--primary-color), var(--bs-bg-opacity, 1)) !important;
+}
+
+.bg-custom-secondary {
+    background-color: rgba(var(--secondary-color), var(--bs-bg-opacity, 1)) !important;
+}
+
+.bg-custom-accent {
+    background-color: rgba(var(--accent-color), var(--bs-bg-opacity, 1)) !important;
+}
+
+.bg-custom-white {
+    background-color: rgba(var(--white-color), var(--bs-bg-opacity, 1)) !important;
+}
+
+.bg-custom-black {
+    background-color: rgba(var(--black-color), var(--bs-bg-opacity, 1)) !important;
+}
+
+.text-custom-primary {
+    color: rgba(var(--primary-color), var(--bs-text-opacity, 1)) !important;
+}
+
+.text-custom-secondary {
+    color: rgba(var(--secondary-color), var(--bs-text-opacity, 1)) !important;
+}
+
+.text-custom-accent {
+    color: rgba(var(--accent-color), var(--bs-text-opacity, 1)) !important;
+}
+
+.text-custom-white {
+    color: rgba(var(--white-color), var(--bs-text-opacity, 1)) !important;
+}
+
+.text-custom-black {
+    color: rgba(var(--black-color), var(--bs-text-opacity, 1)) !important;
+}
+
+.border-custom-primary {
+    border-color: rgba(var(--primary-color), var(--bs-border-opacity, 1)) !important;
+}
+
+.border-custom-secondary {
+    border-color: rgba(var(--secondary-color), var(--bs-border-opacity, 1)) !important;
+}
+
+.border-custom-accent {
+    border-color: rgba(var(--accent-color), var(--bs-border-opacity, 1)) !important;
+}
+
+.border-custom-white {
+    border-color: rgba(var(--white-color), var(--bs-border-opacity, 1)) !important;
+}
+
+.border-custom-black {
+    border-color: rgba(var(--black-color), var(--bs-border-opacity, 1)) !important;
+}
+
+.card-custom {
+    color: rgba(var(--white-color));
+    background-color: rgba(var(--primary-color), 5%);
+    border-color: rgba(var(--primary-color), 50%);
+    box-shadow: inset 0 0 10px rgba(var(--primary-color), 35%);
+    transition: all var(--transition) ease-in-out;
+}
+
+.card-custom img {
+    height: 105px;
+    object-position: bottom;
+    object-fit: contain;
+}
+
+.card-hover:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+}
+
+.hover-active {
+    opacity: 0;
+    transition: all var(--transition) ease-in-out;
+}
+
+.card-hover:hover .hover-active {
+    opacity: 1;
+}
+
+.table-header {
+    --bs-table-color: #fff;
+    --bs-table-bg: rgba(var(--primary-color), 100%);
+    --bs-table-border-color: rgba(var(--secondary-color), 100%);
+    --bs-table-striped-bg: #ecedee;
+    --bs-table-striped-color: #000;
+    --bs-table-active-bg: #dfe0e1;
+    --bs-table-active-color: #000;
+    --bs-table-hover-bg: #e5e6e7;
+    --bs-table-hover-color: #000;
+    color: var(--bs-table-color);
+    border-color: var(--bs-table-border-color);
+}
+
+.table {
+    --bs-table-color-type: initial;
+    --bs-table-bg-type: initial;
+    --bs-table-color-state: initial;
+    --bs-table-bg-state: initial;
+    --bs-table-color: rgba(var(--white-color), 100%);
+
+    --bs-table-accent-bg: transparent;
+    --bs-table-bg: rgba(var(--primary-color), 50%);
+    --bs-table-striped-bg: rgba(var(--accent-color), 50%);
+    --bs-table-active-bg: rgba(var(--primary-color), 30%);
+    --bs-table-hover-bg: rgba(var(--accent-color), 25%);
+
+    --bs-table-border-color: rgba(var(--primary-color), 50%);
+    --bs-table-striped-color: rgba(var(--white-color), 100%);
+    --bs-table-active-color: rgba(var(--white-color), 100%);
+    --bs-table-hover-color: rgba(var(--white-color), 100%);
+}
+/* EXTRA END */
+
+#app {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.phone, .phone-popup {
+    overflow: hidden;
+    width: 245px;
+    height: 52vh;
+    position: absolute;
+    right: 3rem;
+    bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 2rem;
+    padding: .5rem;
+    background-color: #000;
+}
+
+.phone {
+    /* display: none; */
+}
+
+.phone.show {
+    display: block;
+}
+
+.phone-popup {
+    overflow: hidden;
+    width: 245px;
+    height: 10vh;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    bottom: -10vh;
+    transition: all 350ms ease-in-out;
+    padding-bottom: 0;
+}
+
+.phone-popup.show {
+    bottom: 0;
+}
+
+.phone-popup .phone-content {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.phone-content {
+    position: relative;
+    border-radius: calc(2rem - .5rem);
+    height: 100%;
+    background-color: #fff;
+}
+
