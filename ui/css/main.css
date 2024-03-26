@@ -35,7 +35,6 @@ html, body {
 
 p {
     margin: 0;
-    color: rgba(var(--text-color), 100%);
     font-weight: 300;
 }
 
@@ -236,3 +235,52 @@ body {
     background-color: #fff;
 }
 
+.phone-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .25rem;
+    padding: 0 .5rem;
+}
+
+.phone-header .header-content {
+    width: 100%;
+    padding: .5rem .5rem .25rem .5rem;
+    font-size: .75rem;
+    color: #000;
+    display: flex;
+    gap: .5rem;
+}
+
+.phone-header .header-content * {
+    color: #000;
+    font-size: .75rem;
+}
+
+.phone-header .header-content:nth-child(1) {
+    text-align: left;
+    justify-content: start;
+}
+
+.phone-header .header-content:nth-child(1) * {
+    line-height: 1;
+    font-weight: 400;
+}
+
+.phone-header .header-content:nth-child(2) {
+    text-align: center;
+    justify-content: center;
+}
+
+.phone-header .header-content:nth-child(2) * {
+    font-size: .5rem;
+}
+
+.phone-header .header-content:nth-child(3) {
+    text-align: right;
+    justify-content: end;
+}
+
+.phone-header .header-content:nth-child(3) * {
+    font-size: .9rem;
+}
