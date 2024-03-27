@@ -87,3 +87,12 @@ RegisterNUICallback('Close', function(data, cb)
     ToggleTablet(nil, false)
     cb('ok')
 end)
+
+-- Command / Keybind
+RegisterCommand(Config.Command, function()
+    TriggerEvent(project..':client:open')
+end, false)
+
+if Config.Keybind then
+    RegisterKeyMapping(Config.Command, Config.CommandDescription, 'KEYBOARD', Config.OpenKey)
+end

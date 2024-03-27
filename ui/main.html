@@ -11,6 +11,7 @@
     <link rel="stylesheet" media="all" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/tippy.js/6.3.7/animations/scale.min.css" integrity="sha512-MmJrbMCEMWdj/tp1ze1tpJb/BOdCJcIA0Oe5Cu5gm5Hmc7aKy3eKc+64Ce/cr2PSFOwXlcErGV0THg8LT/FORg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" media="all" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/tippy.js/6.3.7/tippy.min.css" integrity="sha512-HbPh+j4V7pXprvQMt2dtmK/zCEsUeZWYXRln4sOwmoyHPQAPqy/k9lIquKUyKNpNbDGAY06UdiDHcEkBc72yCQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
  
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link rel="stylesheet" media="all" href="css/main.css">
     
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -21,33 +22,129 @@
     <script type="text/javascript" src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 </head>
 <body>
-    <div id="app">
+    <div id="app" current-time="00:00">
         <div class="phone-popup">
-            <div class="phone-content">
+            <div class="phone-cover">
+                <div class="phone-container">
+                    <div class="phone-header">
+                        <div class="header-content">
+                            <p time>23:30</p>
+                        </div>
+                        <div class="header-content">
+                            <i class="bi bi-circle-fill d-flex"></i>
+                        </div>
+                        <div class="header-content">
+                            <i class="bi bi-wifi d-flex"></i>
+                            <i class="bi bi-battery-full d-flex"></i>
+                        </div>
+                    </div>
+                    <div class="phone-notification">
+                        <div class="notification-content">
+                            <div class="icon"><i class="bi bi-discord"></i></div>
+                            <div class="text overflow-hidden">
+                                <div class="d-flex justify-content-between gap-1">
+                                    <div class="fw-medium text-truncate">Discord</div>
+                                    <div class="fw-light text-muted text-nowrap">2m s.</div>
+                                </div>
+                                <p class="text-muted">Du har modtaget en venneanmodning fra RedEye</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="phone">
-            <div class="phone-content">
-                <div class="phone-header">
-                    <div class="header-content">
-                        <p>23:30</p>
+            <div class="phone-cover">
+                <div class="phone-container">
+                    <div class="phone-header">
+                        <div class="header-content">
+                            <p time>23:30</p>
+                        </div>
+                        <div class="header-content">
+                            <i class="bi bi-circle-fill d-flex"></i>
+                        </div>
+                        <div class="header-content">
+                            <i class="bi bi-wifi d-flex"></i>
+                            <i class="bi bi-battery-full d-flex"></i>
+                        </div>
                     </div>
-                    <div class="header-content">
-                        <i class="bi bi-circle-fill d-flex"></i>
+                    <div class="phone-notification">
+                        <div class="notification-content">
+                            <div class="icon"><i class="bi bi-discord"></i></div>
+                            <div class="text overflow-hidden">
+                                <div class="d-flex justify-content-between gap-1">
+                                    <div class="fw-medium text-truncate">Discord</div>
+                                    <div class="fw-light text-muted text-nowrap">2m s.</div>
+                                </div>
+                                <p class="text-muted">Du har modtaget en venneanmodning fra RedEye</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="header-content">
-                        <i class="bi bi-wifi d-flex"></i>
-                        <i class="bi bi-battery-full d-flex"></i>
+                    <div class="phone-content">
+                        <div class="d-flex flex-wrap p-1">
+                            <div class="w-25 h-25 p-1 text-center">
+                                <div class="bg-primary rounded-3 p-2">
+                                    <i class="bi bi-discord fs-4 d-flex justify-content-center"></i>
+                                </div>
+                            </div>
+                            <div class="w-25 h-25 p-1 text-center">
+                                <div class="bg-primary rounded-3 p-2">
+                                    <i class="bi bi-discord fs-4 d-flex justify-content-center"></i>
+                                </div>
+                            </div>
+                            <div class="w-25 h-25 p-1 text-center">
+                                <div class="bg-primary rounded-3 p-2">
+                                    <i class="bi bi-discord fs-4 d-flex justify-content-center"></i>
+                                </div>
+                            </div>
+                            <div class="w-25 h-25 p-1 text-center">
+                                <div class="bg-primary rounded-3 p-2">
+                                    <i class="bi bi-discord fs-4 d-flex justify-content-center"></i>
+                                </div>
+                            </div>
+                            <div class="w-25 h-25 p-1 text-center">
+                                <div class="bg-primary rounded-3 p-2">
+                                    <i class="bi bi-discord fs-4 d-flex justify-content-center"></i>
+                                </div>
+                            </div>
+                            <div class="w-25 h-25 p-1 text-center">
+                                <div class="bg-primary rounded-3 p-2">
+                                    <i class="bi bi-discord fs-4 d-flex justify-content-center"></i>
+                                </div>
+                            </div>
+                            <div class="w-25 h-25 p-1 text-center">
+                                <div class="bg-primary rounded-3 p-2">
+                                    <i class="bi bi-discord fs-4 d-flex justify-content-center"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div id="wrapper">
                 </div>
             </div>
         </div>
     </div>
     <script src="js/main.js"></script>
     <script>
-        $(".phone").draggable({ containment: "parent" });
+        // $(function() {
+        //     $(".phone").resizable({
+        //         containment: "parent",
+        //         minHeight: 475,
+        //         minWidth: 245,
+        //         aspectRatio: true,
+        //         start: function(event, ui) {
+        //             console.log("Resizing started");
+        //         },
+        //         resize: function(event, ui) {
+        //             console.log("Resizing...");
+        //             console.log("New width: " + ui.size.width);
+        //             console.log("New height: " + ui.size.height);
+        //         },
+        //         stop: function(event, ui) {
+        //             console.log("Resizing stopped");
+        //         }
+        //     });
+        //     $(".phone").draggable({ containment: "parent" });
+        // });
     </script>
 </body>
 </html>

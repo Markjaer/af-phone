@@ -14,10 +14,6 @@
     --ani-color: 0, 255, 255;
 
     --bs-border-radius: 5px;
-    --bs-border-radius-xxl: var(--bs-border-radius);
-    --bs-border-radius-xl: var(--bs-border-radius);
-    --bs-border-radius-lg: var(--bs-border-radius);
-    --bs-border-radius-md: var(--bs-border-radius);
     --bs-border-radius-sm: var(--bs-border-radius);
     
     --transition: 150ms;
@@ -186,18 +182,29 @@ body {
     position: relative;
 }
 
-.phone, .phone-popup {
-    overflow: hidden;
+.phone-popup {
     width: 245px;
-    height: 52vh;
+    height: 475px;
+    position: absolute;
+    right: 3rem;
+    bottom: -475px;
+    transition: all 350ms ease-in-out;
+}
+
+.phone-popup {
+    /* bottom: -20rem; */
+}
+
+.phone-popup.show {
+    bottom: -20rem;
+}
+
+.phone {
+    width: 245px;
+    height: 475px;
     position: absolute;
     right: 3rem;
     bottom: 1rem;
-    display: flex;
-    flex-direction: column;
-    border-radius: 2rem;
-    padding: .5rem;
-    background-color: #000;
 }
 
 .phone {
@@ -208,31 +215,24 @@ body {
     display: block;
 }
 
-.phone-popup {
-    overflow: hidden;
-    width: 245px;
-    height: 10vh;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    bottom: -10vh;
-    transition: all 350ms ease-in-out;
-    padding-bottom: 0;
+.phone-cover {
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 2rem;
+    padding: .5rem;
+    background-color: #000;
 }
 
-.phone-popup.show {
-    bottom: 0;
-}
-
-.phone-popup .phone-content {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-}
-
-.phone-content {
+.phone-container {
     position: relative;
     border-radius: calc(2rem - .5rem);
     height: 100%;
-    background-color: #fff;
+    overflow: hidden;
+    background: url('https://arcticfireline.com/assets/files/img/gta/wallpaper.webp');
+    background-position: center;
+    background-size: cover;
 }
 
 .phone-header {
@@ -247,13 +247,12 @@ body {
     width: 100%;
     padding: .5rem .5rem .25rem .5rem;
     font-size: .75rem;
-    color: #000;
     display: flex;
     gap: .5rem;
 }
 
 .phone-header .header-content * {
-    color: #000;
+    color: rgba(var(--white-color), 80%);
     font-size: .75rem;
 }
 
@@ -274,6 +273,7 @@ body {
 
 .phone-header .header-content:nth-child(2) * {
     font-size: .5rem;
+    color: #000;
 }
 
 .phone-header .header-content:nth-child(3) {
@@ -283,4 +283,44 @@ body {
 
 .phone-header .header-content:nth-child(3) * {
     font-size: .9rem;
+}
+
+.phone-notification {
+    padding: .5rem;
+    position: absolute;
+    top: auto;
+    left: 0;
+    right: 0;
+}
+
+.phone-notification {
+    /* top: -50px; */
+}
+
+.notification-content {
+    background: rgba(var(--black-color), 90%);
+    border-radius: calc(2rem - 1.25rem);
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    padding: .5rem .75rem;
+    gap: .75rem;
+}
+
+.notification-content .icon * {
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.notification-content .text * {
+    font-size: .7rem;
+    line-height: 1;
+}
+
+.phone-popup .phone-notification {
+    top: 0;
+}
+
+.phone-popup .notification-content {
+    border-radius: calc(2rem - 1rem);
 }

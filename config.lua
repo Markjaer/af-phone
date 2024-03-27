@@ -1,10 +1,10 @@
 Config = {}
 
-Config.Command = 'garagemenu'
-Config.CommandDescription = 'Opens the information tablet'
+Config.Command = 'aphone'
+Config.CommandDescription = 'Opens the phone'
 
-Config.Keybind = false
-Config.OpenKey = 'M'
+Config.Keybind = true
+Config.OpenKey = 'F4'
 
 Config.AnimDict = 'anim@cellphone@in_car@ds'
 Config.Prop = 'prop_npc_phone_02'
