@@ -182,7 +182,7 @@ body {
     position: relative;
 }
 
-.phone-popup {
+.phone-front {
     width: 245px;
     height: 475px;
     position: absolute;
@@ -191,28 +191,40 @@ body {
     transition: all 350ms ease-in-out;
 }
 
-.phone-popup {
+.phone-front {
     /* bottom: -20rem; */
 }
 
-.phone-popup.show {
+.phone-front.show {
     bottom: -20rem;
 }
 
-.phone {
+.position {
+    position: absolute;
+    bottom: 1rem;
+    right: 3rem;
     width: 245px;
     height: 475px;
-    position: absolute;
+}
+
+.phone {
+    width: 100%;
+    height: 100%;
+    /* width: 245px;
+    height: 475px; */
+    /* position: absolute;
     right: 3rem;
+    top: auto;
     bottom: 1rem;
+    transition: top 350ms ease-in-out; */
 }
 
 .phone {
     /* display: none; */
 }
 
-.phone.show {
-    display: block;
+.phone.popup {
+    bottom: 0 !important;
 }
 
 .phone-cover {
@@ -317,10 +329,26 @@ body {
     line-height: 1;
 }
 
-.phone-popup .phone-notification {
-    top: 0;
+.rotate-0 {
+    bottom: 0;
+    right: 0;
+    transform: rotate(0deg);
 }
 
-.phone-popup .notification-content {
-    border-radius: calc(2rem - 1rem);
+.rotate-90 {
+    bottom: 0;
+    left: 0;
+    transform: rotate(90deg);
+}
+
+.rotate-180 {
+    top: 0;
+    left: 0;
+    transform: rotate(180deg);
+}
+
+.rotate-270 {
+    top: 0;
+    right: 0;
+    transform: rotate(270deg);
 }
