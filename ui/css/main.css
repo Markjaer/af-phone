@@ -207,6 +207,10 @@ body {
     height: 475px;
 }
 
+.position.active {
+    cursor: move;
+}
+
 .phone {
     width: 100%;
     height: 100%;
