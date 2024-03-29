@@ -24,21 +24,9 @@
 <body>
     <div id="app" current-time="00:00">
         <div class="position" style="right: 3rem; bottom: 1rem; width: 245px; height: 475px;">
-            <div class="phone popup">
+            <div class="phone show">
                 <div class="phone-cover">
-                    <div class="phone-container closed">
-                        <div class="phone-header">
-                            <div class="header-content">
-                                <p time>23:30</p>
-                            </div>
-                            <div class="header-content">
-                                <i class="bi bi-circle-fill d-flex"></i>
-                            </div>
-                            <div class="header-content">
-                                <i class="bi bi-wifi d-flex"></i>
-                                <i class="bi bi-battery-full d-flex"></i>
-                            </div>
-                        </div>
+                    <div class="phone-container">
                         <div class="phone-notification">
                             <div class="notification-content">
                                 <div class="icon"><i class="bi bi-discord"></i></div>
@@ -51,7 +39,20 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="phone-content">
+                        
+                        <div class="phone-header">
+                            <div class="header-content">
+                                <p time>23:30</p>
+                            </div>
+                            <div class="header-content">
+                                <i class="bi bi-circle-fill d-flex"></i>
+                            </div>
+                            <div class="header-content">
+                                <i class="bi bi-wifi d-flex"></i>
+                                <i class="bi bi-battery-full d-flex"></i>
+                            </div>
+                        </div>
+                        <div class="phone-content closed">
                             <div class="d-flex flex-wrap p-1">
                                 <div class="w-25 h-25 p-1 text-center">
                                     <div class="bg-primary rounded-3 p-2">
@@ -89,6 +90,9 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="phone-footer">
+                            <div class="phone-home"></div>
                         </div>
                     </div>
                 </div>
