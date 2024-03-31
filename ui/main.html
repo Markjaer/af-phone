@@ -11,8 +11,8 @@
     <link rel="stylesheet" media="all" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/tippy.js/6.3.7/animations/scale.min.css" integrity="sha512-MmJrbMCEMWdj/tp1ze1tpJb/BOdCJcIA0Oe5Cu5gm5Hmc7aKy3eKc+64Ce/cr2PSFOwXlcErGV0THg8LT/FORg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" media="all" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/tippy.js/6.3.7/tippy.min.css" integrity="sha512-HbPh+j4V7pXprvQMt2dtmK/zCEsUeZWYXRln4sOwmoyHPQAPqy/k9lIquKUyKNpNbDGAY06UdiDHcEkBc72yCQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
  
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-    <link rel="stylesheet" media="all" href="css/main.css">
+    <link rel="stylesheet" media="all" type="text/css" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" media="all" type="text/css" href="css/main.css">
     
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tippy.js/6.3.7/tippy.umd.min.js" integrity="sha512-2TtfktSlvvPzopzBA49C+MX6sdc7ykHGbBQUTH8Vk78YpkXVD5r6vrNU+nOmhhl1MyTWdVfxXdZfyFsvBvOllw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -20,6 +20,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <!-- JQuery -->
     <script type="text/javascript" src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script type="text/javascript" src="https://kit.fontawesome.com/48c8cc3987.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div id="app" current-time="00:00">
@@ -50,6 +51,20 @@
                             <div class="header-content">
                                 <i class="bi bi-wifi d-flex"></i>
                                 <i class="bi bi-battery-full d-flex"></i>
+                            </div>
+                        </div>
+                        <div class="phone-lockscreen">
+                            <div class="">
+                                <p class="text-center lh-1">fre. 29. <span>vejr</span></p>
+                                <p class="text-center lh-1" style="font-size: 5rem;" time>21.00</p>
+                            </div>
+                            <div class="d-flex justify-content-between mt-auto px-2">
+                                <div class="bg-black d-flex align-items-center justify-content-center rounded-circle bg-opacity-50 cursor-pointer" style="width: 35px; height: 35px;">
+                                    <img width="17px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAsUlEQVR4nO3VTQrCMBBA4ekdxE3jffQyeiA9hti9wYvUjeBCb/CkpEIorSYwSVD6lrP58gcRmRsJuBCeFa2ITH4+Su2YgvAzwn1owocIeK8JL4BbAHoHlmpwF7ALgLeiHVAHwHUKuPKAY78QA5y8eaUOd3mA8War91BSxQSQFcZ9HDYrjLtbC5yzHjXuQZkebXLCo82wWnxJTxo0w8MkVRSErx/cNiW8mcBbYJ0Mln/oBS0ocV3xIDB/AAAAAElFTkSuQmCC">
+                                </div>
+                                <div class="bg-black d-flex align-items-center justify-content-center rounded-circle bg-opacity-50 cursor-pointer" style="width: 35px; height: 35px;">
+                                    <img width="17px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAABRUlEQVR4nO2VzU7CQBRGR7ZSeQyWAkujewkQX4ifhSHxXYz6BKiJ8QF8heoGXPmzP+YmH3GCpTOlZWHSk8xm7jc9mdvp1LmaGgG0gRe2Y7W2KwPwrIc9eXMPhHksJfYBDoEZ8UxsjYsFGABv7I9XoJ8ltkKIJTAGOuqEja7mVhHr0yxxiGsgyenYEXCzseYEOPUniopNeqDchR0i4FvDDt1ItcaG3KRnu4qX650CVzm5uTKtvLa7AuKxt9MQQ2WnVYiPVbf2hrhXtluFuKn6V4T4U9mkCnFSQPzhnfDS4k6BK3OhbK8K8UT1UYR4oOysCvHKWqfMPCd36X1O71WI0aXQUG5op1fv3MbC26ldIHfk4AqK1/LWn4W/622nt6GHuB3EqIVTHZ6mPpue5ra2NySO+TuVJc0S9/csT4Hzba+qpub/8wOkTL4J7un1cAAAAABJRU5ErkJggg==">
+                                </div>
                             </div>
                         </div>
                         <div class="phone-content closed">
@@ -91,7 +106,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="phone-footer">
+                        <div class="phone-home-footer">
                             <div class="phone-home"></div>
                         </div>
                     </div>
@@ -102,21 +117,108 @@
     <script src="js/main.js"></script>
     <script>
         $(function() {
+            let startY;
+            let initialBottom = 0;
+            let isSwiping = false;
+            const phoneContainerHeight = $(".phone-container").outerHeight();
+            const phoneLockscreenHeight = $(".phone-lockscreen").outerHeight();
+
+            $(document).on('click', '.phone-home-footer.home', function() {
+                $('.phone-home-footer').css("transition", "transform 0.3s").css("transform", "scale(1)");
+                setTimeout(() => {
+                    $('.phone-home-footer').css("transform", "scale(2)");
+                }, 2);
+                setTimeout(() => {
+                    $('.phone-home-footer').css("transform", "scale(1)");
+                }, 5);
+                console.log("home")
+            });
+
+            $(document).on('touchstart mousedown', '.position:not(.active) .phone-home-footer:not(.home)', function(event) {
+                console.log('is swiping')
+                isSwiping = true;
+                if (event.type === 'touchstart') {
+                    startY = event.touches[0].clientY;
+                } else {
+                    startY = event.clientY;
+                }
+            });
+
+            $(document).on('touchmove mousemove', function(event) {
+                if (isSwiping && !$('.position').hasClass('active')) {
+                    let currentY;
+                    if (event.type === 'touchmove') {
+                        currentY = event.touches[0].clientY;
+                    } else {
+                        currentY = event.clientY;
+                    }
+
+                    // Calculate the distance moved
+                    let deltaY = startY - currentY;
+
+                    // Update the initialBottom position
+                    initialBottom += deltaY;
+
+                    // Ensure the initialBottom stays within bounds
+                    initialBottom = Math.max(0, initialBottom); // Prevent negative values
+                    initialBottom = Math.min(phoneContainerHeight, initialBottom); // Prevent exceeding container height
+
+                    // Calculate the blur intensity based on how far it is swiped up
+                    let blurIntensity = (initialBottom / (phoneContainerHeight / 3)) * 2;
+                    blurIntensity = Math.min(10, blurIntensity); // Limit blur intensity to maximum of 10
+
+                    // Apply the blur effect
+                    $('.phone-lockscreen').css('filter', 'blur(' + blurIntensity + 'px)');
+
+                    // Move both the .phone-lockscreen and .phone-home-footer elements accordingly
+                    $('.phone-lockscreen, .phone-home-footer').css('bottom', initialBottom + 'px');
+
+                    // Update the starting Y coordinate for the next move
+                    startY = currentY;
+                }
+            });
+
+            $(document).on('touchend mouseup', function(event) {
+                if (isSwiping && !$('.position').hasClass('active')) {
+                    // Check if the bottom position is above halfway
+                    if (initialBottom >= phoneContainerHeight / 2) {
+                        // Animate moving the elements to the top of the container
+                        $('.phone-lockscreen').animate({ bottom: phoneContainerHeight + 'px', opacity: 0, display: 'none' }, 300);
+                        $('.phone-home-footer').css({bottom: '0px', opacity: '0'});
+                        $('.phone-home-footer').animate({opacity: '1'});
+                        // Add class to lockscreen and remove class from content
+                        $('.phone-lockscreen').addClass('open');
+                        $('.phone-home-footer').addClass('home');
+                        $('.phone-content').removeClass('closed');
+                    } else {
+                        // Animate moving the elements back to the initial position
+                        $('.phone-lockscreen, .phone-home-footer').animate({ bottom: '0px' }, 300);
+                    }
+
+                    // Reset the initialBottom
+                    initialBottom = 0;
+
+                    // Reset the blur effect
+                    $('.phone-lockscreen').css('filter', 'none');
+                    isSwiping = false;
+                }
+            });
+
             var height = 475;
             var width = 245;
 
-            $(".position.active").resizable({
+            $('.position.active').resizable({
                 handles: 'all', // Only resize from the bottom right corner
-                containment: "parent",
+                containment: 'parent',
                 minHeight: 475,
                 minWidth: 245,
                 aspectRatio: true,
                 ghost: true,
                 classes: {
-                    "ui-resizable-se": "ui-icon ui-icon-gripsmall-diagonal-se rotate-0",
-                    "ui-resizable-sw": "ui-icon ui-icon-gripsmall-diagonal-se rotate-90",
-                    "ui-resizable-nw": "ui-icon ui-icon-gripsmall-diagonal-se rotate-180",
-                    "ui-resizable-ne": "ui-icon ui-icon-gripsmall-diagonal-se rotate-270",
+                    'ui-resizable-se': 'ui-icon ui-icon-gripsmall-diagonal-se rotate-0',
+                    'ui-resizable-sw': 'ui-icon ui-icon-gripsmall-diagonal-se rotate-90',
+                    'ui-resizable-nw': 'ui-icon ui-icon-gripsmall-diagonal-se rotate-180',
+                    'ui-resizable-ne': 'ui-icon ui-icon-gripsmall-diagonal-se rotate-270',
                 },
                 stop: function(event, ui) {                    
                     const fontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
@@ -130,15 +232,15 @@
 
                     $(this).attr('style', null);
                     $(this).css({
-                        "height": height + "px",
-                        "width": width + "px",
-                        "right": rightRem + "rem",
-                        "bottom": bottomRem + "rem",
+                        'height': height + 'px',
+                        'width': width + 'px',
+                        'right': rightRem + 'rem',
+                        'bottom': bottomRem + 'rem',
                     });
                 }
             });
-            $(".position.active").draggable({
-                containment: "parent",
+            $('.position.active').draggable({
+                containment: 'parent',
                 stop: function(event, ui) {
                     const fontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
                     const parentWidth = $(this).parent().width();
@@ -148,10 +250,10 @@
 
                     $(this).attr('style', null);
                     $(this).css({
-                        "height": height + "px",
-                        "width": width + "px",
-                        "right": rightRem + "rem",
-                        "bottom": bottomRem + "rem",
+                        'height': height + 'px',
+                        'width': width + 'px',
+                        'right': rightRem + 'rem',
+                        'bottom': bottomRem + 'rem',
                     });
                 }
             });

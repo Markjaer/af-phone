@@ -38,7 +38,7 @@ AF.Phone.Functions = {
     },
     UpdateTimer: function() {
         var today = new Date();
-        var time = (today.getHours().toString().length == 1 ? '0' + today.getHours() : today.getHours()) + ":" + (today.getMinutes().toString().length == 1 ? '0' + today.getMinutes() : today.getMinutes());
+        var time = (today.getHours().toString().length == 1 ? '0' + today.getHours() : today.getHours()) + "." + (today.getMinutes().toString().length == 1 ? '0' + today.getMinutes() : today.getMinutes());
         if ($(APP).attr('current-time') != time.toString()) {
             $(APP).attr('current-time', time);
             $('[time]').text(time);
