@@ -218,7 +218,7 @@ body {
 .phone {
     position: absolute;
     inset: auto;
-    bottom: 0;
+    bottom: calc(-100% - 1rem);
     width: 100%;
     height: 100%;
     transition: bottom 350ms ease-in-out;
@@ -230,7 +230,7 @@ body {
 }
 
 .phone.popup {
-    bottom: calc(-475px - 1rem + 150px);
+    bottom: calc(-100% - -6rem);
 }
 
 .phone-cover {
@@ -314,7 +314,12 @@ body {
     top: -85px;
     left: 0;
     right: 0;
+    z-index: 5;
     transition: top 350ms ease-in-out;
+}
+
+.phone.show {
+    bottom: 0;
 }
 
 .phone.show .phone-notification.active {
@@ -329,19 +334,23 @@ body {
     top: 26px;
 }
 
+.phone-baggrund {
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
 .phone.popup .phone-content {
-    /* position: absolute;
-    inset: 0; */
-    /* display: none; */
+    display: none;
 }
 
 .phone-content {
     position: absolute;
     inset: 0;
     z-index: 1;
-    background: url('https://arcticfireline.com/assets/files/img/gta/wallpaper.webp');
-    background-position: center;
-    background-size: cover;
+    padding: 2rem 0 1.5rem 0;
 }
 
 .notification-content {
@@ -415,7 +424,4 @@ body {
     right: 0;
     bottom: 0;
     z-index: 2;
-    background: url('https://arcticfireline.com/assets/files/img/gta/wallpaper.webp');
-    background-position: center;
-    background-size: cover;
 }

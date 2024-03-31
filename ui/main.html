@@ -28,6 +28,7 @@
             <div class="phone show">
                 <div class="phone-cover">
                     <div class="phone-container">
+                        <img class="phone-baggrund" src="https://arcticfireline.com/assets/files/img/gta/wallpaper.webp" alt="">
                         <div class="phone-notification">
                             <div class="notification-content">
                                 <div class="icon"><i class="bi bi-discord"></i></div>
@@ -53,7 +54,7 @@
                                 <i class="bi bi-battery-full d-flex"></i>
                             </div>
                         </div>
-                        <div class="phone-lockscreen">
+                        <div class="phone-lockscreen" style="background: url('https://arcticfireline.com/assets/files/img/gta/wallpaper.webp');background-position: center;background-size: cover;">
                             <div class="">
                                 <p class="text-center lh-1">fre. 29. <span>vejr</span></p>
                                 <p class="text-center lh-1" style="font-size: 5rem;" time>21.00</p>
@@ -125,13 +126,6 @@
 
             $(document).on('click', '.phone-home-footer.home', function() {
                 $('.phone-home-footer').css("transition", "transform 0.3s").css("transform", "scale(1)");
-                setTimeout(() => {
-                    $('.phone-home-footer').css("transform", "scale(2)");
-                }, 2);
-                setTimeout(() => {
-                    $('.phone-home-footer').css("transform", "scale(1)");
-                }, 5);
-                console.log("home")
             });
 
             $(document).on('touchstart mousedown', '.position:not(.active) .phone-home-footer:not(.home)', function(event) {
