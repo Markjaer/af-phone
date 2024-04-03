@@ -1,9 +1,7 @@
 # FiveM Custom Telefon:
 > Overveje at tjekke efter telefon eksistere, oprette databaser.
-
-> Designet skal ikke ligne nogle telefoner.
-
-> Prøve at lave det så custom som muligt.
+Designet skal ikke ligne nogle telefoner.
+Prøve at lave det så custom som muligt.
 
 ## Apps:
 - [ ] Bank
