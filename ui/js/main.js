@@ -1,34 +1,131 @@
 const APP = `#app`;
 
 AF = {}
-AF.Phone = {}
-AF.Phone.Notifications = {}
-AF.Phone.Apps = {
-
+AF.Apps = [
+    Contacts = {
+        app: 'contacts',
+        color: '#D6D6CB',
+        icon: 'fa fa-phone-alt',
+        tooltipText: 'Kontakter',
+        tooltipPos: 'top',
+        job: false,
+        blockedjobs: {},
+        slot: 1,
+        Alerts: 0,
+    },
+    Settings = {
+        app: 'contacts',
+        color: '#D6D6CB',
+        icon: 'fa fa-phone-alt',
+        tooltipText: 'Kontakter',
+        tooltipPos: 'top',
+        job: false,
+        blockedjobs: {},
+        slot: 1,
+        Alerts: 0,
+    },
+    Messages = {
+        app: 'contacts',
+        color: '#D6D6CB',
+        icon: 'fa fa-phone-alt',
+        tooltipText: 'Kontakter',
+        tooltipPos: 'top',
+        job: false,
+        blockedjobs: {},
+        slot: 1,
+        Alerts: 0,
+    },
+    FaceTime = {
+        app: 'contacts',
+        color: '#D6D6CB',
+        icon: 'fa fa-phone-alt',
+        tooltipText: 'Kontakter',
+        tooltipPos: 'top',
+        job: false,
+        blockedjobs: {},
+        slot: 1,
+        Alerts: 0,
+    },
+    Boks = {
+        app: 'contacts',
+        color: '#D6D6CB',
+        icon: 'fa fa-phone-alt',
+        tooltipText: 'Kontakter',
+        tooltipPos: 'top',
+        job: false,
+        blockedjobs: {},
+        slot: 1,
+        Alerts: 0,
+    },
+    Discord = {
+        app: 'contacts',
+        color: '#D6D6CB',
+        icon: 'fa fa-phone-alt',
+        tooltipText: 'Kontakter',
+        tooltipPos: 'top',
+        job: false,
+        blockedjobs: {},
+        slot: 1,
+        Alerts: 0,
+    },
+    Twitter = {},
+    Tinder = {},
+    Snapchat = {},
+    Instagram = {},
+    Spotify = {},
+    Mails = {},
+    Webshops = {},
+    Bank = {},
+    Notes = {},
+    Images = {},
+    DriverLicense = {},
+]
+AF.Notifications = {}
+AF.Data = {
+    Player: {},
+    PhoneData: {},
 }
-AF.Phone.Data = {
-    CurrentApplication: null,
-    PlayerData: {},
-    Applications: {},
-    IsOpen: false,
-    CallActive: false,
-    MetaData: {},
-    PlayerJob: {},
-    AnonymousCall: false,
-}
 
-AF.Phone.Functions = {
+AF.Functions = {
     Open: function () {
         $(APP).addClass('active');
-        console.log("open", AF.Phone.Functions.CurrencyFormat().format(100))
+        console.log("open", AF.Data)
 
-        AF.Phone.Functions.UpdateTimer();
+        AF.Functions.SetupApps();
+        AF.Functions.UpdateTimer();
         setInterval(() => {
-            AF.Phone.Functions.UpdateTimer();
+            AF.Functions.UpdateTimer();
         }, 1000);
     },
     SetPosition: function() {
-        
+        if (AF.Data.PhoneData.metadata) {
+            var posRight = AF.Data.PhoneData.metadata.right;
+            var posBottom = AF.Data.PhoneData.metadata.bottom;
+            var posWidth = AF.Data.PhoneData.metadata.width;
+            var posHeight = AF.Data.PhoneData.metadata.height;
+
+            $(APP).find('.position').css({
+                right: posRight,
+                bottom: posBottom,
+                width: posWidth,
+                height: posHeight,
+            });
+        }
+    },
+    SetupApps: function () {
+        console.log(AF.Apps)
+        var $apps = ``;
+        AF.Apps.map((item, key) => {
+            $apps += `
+                <div class="w-25 h-25 p-1 text-center">
+                    <div class="rounded-3 p-2" style="background-color: ${item.color};">
+                        <i class="${item.icon} fs-4 d-flex justify-content-center"></i>
+                    </div>
+                    <p class="mt-1" style="font-size: .5rem;">${item.tooltipText}</p>
+                </div>
+            `;
+        });
+        $('[apps]').html($apps);
     },
     CurrencyFormat: function () {
         return new Intl.NumberFormat('da-DK', {
@@ -54,25 +151,33 @@ AF.Phone.Functions = {
 $(document).on('keydown', function(event) {
     switch(event.keyCode) {
         case 27: // ESCAPE
-            AF.Phone.Functions.Close();
+            AF.Functions.Close();
             break;
     }
 });
 
 $(document).ready(function(){
-    AF.Phone.Functions.Open();
+    AF.Data.PhoneData = {metadata: {right: "3rem", bottom: "1rem", width: "245px", height: "475px"}}
+    AF.Data.Player = {PlayerData: {metadata: {"fitbit":[],"status":[],"tracker":false,"criminalrecord":{"hasRecord":false},"callsign":"NO CALLSIGN","thirst":58.199999999998,"phonedata":{"SerialNumber":95768855,"InstalledApps":[]},"craftingrep":0,"stress":0,"walletid":"QB-28517895","jobrep":{"trucker":0,"hotdog":0,"taxi":0,"tow":0},"phone":{"profilepicture":"default","background":"https://arcticfireline.com/assets/files/img/gta/wallpaper.webp"},"attachmentcraftingrep":0,"hunger":53.79999999999199,"ishandcuffed":false,"isdead":false,"dealerrep":0,"inlaststand":false,"bloodtype":"AB+","injail":0,"fingerprint":"US773g31OiX5993","armor":0,"inside":{"apartment":[]},"licences":{"business":false,"driver":true,"weapon":false},"jailitems":[]}}}
+    AF.Functions.SetPosition();
+    AF.Functions.Open();
+
     if (location.origin != "http://127.0.0.1:5500") {
-        $(app).hide();
+        $(APP).hide();
 
         window.addEventListener('message', function(event) {
             switch(event.data.action) {
-                case `${GetParentResourceName()}:open`:
-                    AF.Phone.Data.PlayerData = event.data.PlayerData;
-                    AF.Phone.Functions.SetPosition();
-                    AF.Phone.Functions.Open();
+                case `${GetParentResourceName()}:Open`:
+                    AF.Data.Player = event.data.Player;
+                    AF.Data.PhoneData = event.data.PhoneData;
+                    AF.Functions.SetPosition();
+                    AF.Functions.Open();
                     break;
-                case `${GetParentResourceName()}:close`:
-                    AF.Phone.Functions.Close();
+                case `${GetParentResourceName()}:UpdatePlayer`:
+                    AF.Data.Player = event.data.Player;
+                    break;
+                case `${GetParentResourceName()}:Close`:
+                    AF.Functions.Close();
                     break;
             }
         });

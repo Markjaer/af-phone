@@ -1,8 +1,37 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 local project = GetCurrentResourceName()
 
-local open = false
-local object = nil
+local regex = '[?!@#]'
+local frontCam = false
+
+local Player = {
+    PlayerData = {},
+    PlayerJob = {},
+}
+local PhoneData = {
+    isOpen = false,
+    MetaData = {},
+    Notifications = {},
+    Apps = {
+        Contacts = {},
+        Settings = {},
+        Messages = {},
+        FaceTime = {},
+        Boks = {},
+        Discord = {},
+        Twitter = {},
+        Tinder = {},
+        Snapchat = {},
+        Instagram = {},
+        Spotify = {},
+        Mails = {},
+        Webshops = {},
+        Bank = {},
+        Notes = {},
+        Images = {},
+        DriverLicense = {},
+    }
+}
 
 local anim = Config.AnimDict
 local prop = Config.Prop
@@ -23,76 +52,138 @@ local function LoadProp(model)
     end
 end
 
--- Toggle tablet & animation
-local function ToggleTablet(data, state)
-    local ped = PlayerPedId()
-    open = state
-    
-    if state then
-        LoadDict(anim)
-
-        if not object then
-            LoadProp(prop)
-
-            local coords = GetEntityCoords(ped)
-            local hand = GetPedBoneIndex(ped, bone)
-
-            object = CreateObject(GetHashKey(prop), coords, 1, 1, 1)
-            AttachEntityToEntity(object, ped, hand, 0.0, 0.0, 0.0, 50.0, 320.0, 50.0, 1, 1, 0, 0, 2, 1)
+-- Open Phone
+local function OpenPhone()
+    QBCore.Functions.TriggerCallback(project..':server:HasPhone', function(HasPhone)
+        if HasPhone then
+            PhoneData.isOpen = true
+            SetNuiFocus(true, true)
+            SendNUIMessage({
+                action = project..':Open',
+                PhoneData = PhoneData,
+                PlayerData = PlayerData,
+                PlayerJob = PlayerJob,
+                Apps = Config.Apps,
+                PlayerId = GetPlayerServerId(PlayerId())
+            })
         end
+    end)
+    QBCore.Functions.Notify('Telefon åbnet', 'success')
+end
 
-        if not IsEntityPlayingAnim(ped, anim, 'base', 3) then
-            TaskPlayAnim(ped, anim, 'base', 8.0, 1.0, -1, 49, 1.0, 0, 0, 0)
-        end
+-- Close Phone
+local function ClosePhone()
+    DeleteEntity(object)
+    DetachEntity(object, 1, 1)
+    ClearPedTasks(ped)
 
-        SetNuiFocus(state, state)
-        SendNUIMessage({ 
-            action = project..':open',
-            data = data,
-            lang = Config.Lang
-        })
-        QBCore.Functions.Notify('Telefon åbnet', 'success')
-    else
-        DeleteEntity(object)
-        DetachEntity(object, 1, 1)
-        ClearPedTasks(ped)
-
-        SetNuiFocus(state, state)
-        QBCore.Functions.Notify('Telefon lukket', 'success')
-    end
+    SetNuiFocus(state, state)
+    QBCore.Functions.Notify('Telefon lukket', 'success')
 end
 
 -- Event for server-side
-RegisterNetEvent(project..':client:open', function(data)
-    ToggleTablet(data, true)
+RegisterNetEvent(project..':client:Open', function()
+    OpenPhone()
 end)
 
-RegisterNetEvent(project..':client:close', function()
-    ToggleTablet(nil, false)
+RegisterNetEvent(project..':client:Close', function()
+    ClosePhone()
 end)
 
--- Selected item
-RegisterNUICallback('SelectVehicle', function(data, cb)
-    if data.event then
-        print("trigger nu", json.encode(data))
-        TriggerEvent(data.event, data)
-        cb('ok')
-    else
-        QBCore.Functions.Notify('Opstod en fejl!', 'error')
-    end
-end)
-
--- Close
-RegisterNUICallback('Close', function(data, cb)
-    ToggleTablet(nil, false)
-    cb('ok')
+RegisterNetEvent('QBCore:Client:OnJobUpdate', function(JobInfo)
+    Player.PlayerJob = JobInfo
+    SendNUIMessage({
+        action = project..':PlayerData',
+        Player = Player
+    })
 end)
 
 -- Command / Keybind
 RegisterCommand(Config.Command, function()
-    TriggerEvent(project..':client:open')
+    TriggerEvent(project..':client:Open')
 end, false)
 
 if Config.Keybind then
     RegisterKeyMapping(Config.Command, Config.CommandDescription, 'KEYBOARD', Config.OpenKey)
 end
+
+-- RegisterNUICallback
+RegisterNUICallback('TakePhoto', function(_, cb)
+    SetNuiFocus(false, false)
+    CreateMobilePhone(1)
+    CellCamActivate(true, true)
+    local takePhoto = true
+    while takePhoto do
+        if IsControlJustPressed(1, 27) then -- Toogle Mode
+            frontCam = not frontCam
+            CellFrontCamActivate(frontCam)
+        elseif IsControlJustPressed(1, 177) then -- CANCEL
+            DestroyMobilePhone()
+            CellCamActivate(false, false)
+            cb(json.encode({ url = nil }))
+            break
+        elseif IsControlJustPressed(1, 176) then -- TAKE.. PIC
+            if Config.Webhook then
+                exports['screenshot-basic']:requestScreenshotUpload(tostring(Config.Webhook), 'files[]', function(data)
+                    SaveToInternalGallery()
+                    local image = json.decode(data)
+                    DestroyMobilePhone()
+                    CellCamActivate(false, false)
+                    TriggerServerEvent('qb-phone:server:addImageToGallery', image.attachments[1].proxy_url)
+                    Wait(400)
+                    TriggerServerEvent('qb-phone:server:getImageFromGallery')
+                    cb(json.encode(image.attachments[1].proxy_url))
+                    takePhoto = false
+                end)
+            else
+                QBCore.Functions.Notify('Webhook mangler!', 'error')
+                return
+            end
+            QBCore.Functions.TriggerCallback('qb-phone:server:GetWebhook', function(hook)
+                if not hook then
+                    QBCore.Functions.Notify('Camera not setup', 'error')
+                    return
+                end
+                exports['screenshot-basic']:requestScreenshotUpload(tostring(hook), 'files[]', function(data)
+                    SaveToInternalGallery()
+                    local image = json.decode(data)
+                    DestroyMobilePhone()
+                    CellCamActivate(false, false)
+                    TriggerServerEvent('qb-phone:server:addImageToGallery', image.attachments[1].proxy_url)
+                    Wait(400)
+                    TriggerServerEvent('qb-phone:server:getImageFromGallery')
+                    cb(json.encode(image.attachments[1].proxy_url))
+                    takePhoto = false
+                end)
+            end)
+        end
+        HideHudComponentThisFrame(7)
+        HideHudComponentThisFrame(8)
+        HideHudComponentThisFrame(9)
+        HideHudComponentThisFrame(6)
+        HideHudComponentThisFrame(19)
+        HideHudAndRadarThisFrame()
+        EnableAllControlActions(0)
+        Wait(0)
+    end
+    Wait(1000)
+    OpenPhone()
+end)
+
+-- Close
+RegisterNUICallback('Close', function(data, cb)
+    ClosePhone()
+    cb('ok')
+end)
+
+-- Threads
+CreateThread(function()
+    while true do
+        Wait(60000)
+        QBCore.Functions.TriggerCallback(project..':server:HasPhone', function(HasPhone)
+            if HasPhone then
+                -- Check notifications (PhoneData.Notifications)
+            end
+        end)
+    end
+end)
