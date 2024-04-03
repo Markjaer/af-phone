@@ -147,53 +147,38 @@
                         currentY = event.clientY;
                     }
 
-                    // Calculate the distance moved
                     let deltaY = startY - currentY;
 
-                    // Update the initialBottom position
                     initialBottom += deltaY;
 
-                    // Ensure the initialBottom stays within bounds
-                    initialBottom = Math.max(0, initialBottom); // Prevent negative values
-                    initialBottom = Math.min(phoneContainerHeight, initialBottom); // Prevent exceeding container height
-
-                    // Calculate the blur intensity based on how far it is swiped up
+                    initialBottom = Math.max(0, initialBottom);
+                    initialBottom = Math.min(phoneContainerHeight, initialBottom); 
+                    
                     let blurIntensity = (initialBottom / (phoneContainerHeight / 3)) * 2;
-                    blurIntensity = Math.min(10, blurIntensity); // Limit blur intensity to maximum of 10
+                    blurIntensity = Math.min(10, blurIntensity);
 
-                    // Apply the blur effect
                     $('.phone-lockscreen').css('filter', 'blur(' + blurIntensity + 'px)');
-
-                    // Move both the .phone-lockscreen and .phone-home-footer elements accordingly
                     $('.phone-lockscreen, .phone-home-footer').css('bottom', initialBottom + 'px');
 
-                    // Update the starting Y coordinate for the next move
                     startY = currentY;
                 }
             });
 
             $(document).on('touchend mouseup', function(event) {
                 if (isSwiping && !$('.position').hasClass('active')) {
-                    // Check if the bottom position is above halfway
                     if (initialBottom >= phoneContainerHeight / 2) {
-                        // Animate moving the elements to the top of the container
                         $('.phone-lockscreen').animate({ bottom: phoneContainerHeight + 'px', opacity: 0, display: 'none' }, 300);
                         $('.phone-home-footer').css({bottom: '0px', opacity: '0'});
                         $('.phone-home-footer').animate({opacity: '1'});
-                        // Add class to lockscreen and remove class from content
                         $('.phone-lockscreen').addClass('open');
                         $('.phone-home-footer').addClass('home');
                         $('.phone-content').removeClass('closed');
                     } else {
-                        // Animate moving the elements back to the initial position
                         $('.phone-lockscreen, .phone-home-footer').animate({ bottom: '0px' }, 300);
                     }
 
-                    // Reset the initialBottom
-                    initialBottom = 0;
-
-                    // Reset the blur effect
                     $('.phone-lockscreen').css('filter', 'none');
+                    initialBottom = 0;
                     isSwiping = false;
                 }
             });
@@ -202,7 +187,7 @@
             var width = 245;
 
             $('.position.active').resizable({
-                handles: 'all', // Only resize from the bottom right corner
+                handles: 'all',
                 containment: 'parent',
                 minHeight: 475,
                 minWidth: 245,
