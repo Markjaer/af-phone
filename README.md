@@ -4,29 +4,29 @@ Designet skal ikke ligne nogle telefoner.
 Prøve at lave det så custom som muligt.
 
 ## Apps:
-- Bank
-- Eboks
-- Discord
-- Twitter
-- Beskeder
-- Opkald
-- Facetime
-- Indstillinger
-- Billeder
-- Kamera
-- Notifikationer
-- Tinder
-- Noter
-- Kørekort
-- Snapchat
-- Instagram
-- Spotify - med bestemte musik (no copyright)
-- Ur
-- Mail
-- Oversigt over ejede køretøjer, boliger osv.
-- Online webshop
+- [ ] Bank
+- [ ] Eboks
+- [ ] Discord
+- [ ] Twitter
+- [ ] Beskeder
+- [ ] Opkald
+- [ ] Facetime
+- [ ] Indstillinger
+- [ ] Billeder
+- [ ] Kamera
+- [ ] Notifikationer
+- [ ] Tinder
+- [ ] Noter
+- [ ] Kørekort
+- [ ] Snapchat
+- [ ] Instagram
+- [ ] Spotify - med bestemte musik (no copyright)
+- [ ] Ur
+- [ ] Mail
+- [ ] Oversigt over ejede køretøjer, boliger osv.
+- [ ] Online webshop
 
-## Kunne være fedt:
+## To do:
 **Indstillinger:**
 - Man kan flytte telefonen, lige præcis hvor man vil samt. størrelse og cover.
 - Man kan ændre farve UI.
