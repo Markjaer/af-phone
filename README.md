@@ -27,23 +27,27 @@ Prøve at lave det så custom som muligt.
 - Online webshop
 
 ## Kunne være fedt:
-Indstillinger:
+### Indstillinger:
 - Man kan flytte telefonen, lige præcis hvor man vil samt. størrelse og cover.
 - Man kan ændre farve UI.
 - Man kan slå notifikationer fra og til.
 - Ringetoner, beskedtoner osv.
 - Måske kunne det være fedt med nogle zoner hvor du ikke har telefon dækning fordi du er i skoven eller ligne med PolyZones.
-Bank (A-Bank):
+
+### Bank (A-Bank):
 - Oversigt over fremtidlige regninger og betalte regninger.
 - Hvad du har købt i en butik.
-Online webshop (ArcticShop):
+
+### Online webshop (ArcticShop):
 - Shoppe diverse ting, såsom tøj, ting osv.
 - Bruger banken når der skal betales.
-Eboks (A-Boks):
+
+### Eboks (A-Boks):
 - Indkaldelser.
 - Bøder.
 - Regninger.
-Snapchat (A-Snap)
+
+### Snapchat (A-Snap)
 - Sende snaps til hinanden, med evt. besked.
 - Sende videoer til hinanden.
 - Skrive til hinanden.
