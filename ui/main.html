@@ -24,7 +24,7 @@
 </head>
 <body>
     <div id="app" current-time="00:00">
-        <div class="position">
+        <div class="position" style="height: 1211px; width: 624.57px; right: 3.39749rem; bottom: 1.875rem;">
             <div class="phone show">
                 <div class="phone-cover">
                     <div class="phone-container">
@@ -44,20 +44,24 @@
                         
                         <div class="phone-header">
                             <div class="header-content">
-                                <p time>23:30</p>
+                                <p style="font-size: 5cqw;text-shadow: 0 0 3px rgba(0, 0, 0, 25%);" time>23:30</p>
                             </div>
                             <div class="header-content">
-                                <i class="bi bi-circle-fill d-flex"></i>
+                                <i style="font-size: 3cqw;text-shadow: 0 0 3px rgba(0, 0, 0, 25%);" class="bi bi-circle-fill d-flex"></i>
                             </div>
                             <div class="header-content">
-                                <i class="bi bi-wifi d-flex"></i>
-                                <i class="bi bi-battery-full d-flex"></i>
+                                <i style="font-size: 5cqw;text-shadow: 0 0 3px rgba(0, 0, 0, 25%);" class="bi bi-wifi d-flex"></i>
+                                <i style="font-size: 5cqw;text-shadow: 0 0 3px rgba(0, 0, 0, 25%);" class="bi bi-battery-full d-flex"></i>
                             </div>
                         </div>
-                        <div class="phone-lockscreen" style="background: url('https://arcticfireline.com/assets/files/img/gta/wallpaper.webp');background-position: center;background-size: cover;">
+                        <div class="phone-lockscreen">
+                            <img class="phone-baggrund" src="https://arcticfireline.com/assets/files/img/gta/wallpaper.webp" alt="">
                             <div class="">
-                                <p class="text-center lh-1">fre. 29. <span>vejr</span></p>
-                                <p class="text-center lh-1" style="font-size: 5rem;" time>21.00</p>
+                                <p class="text-center lh-1">
+                                    <span style="font-size: 6cqw;text-shadow: 0 0 3px rgba(0, 0, 0, 25%);">fre. 29.</span>
+                                    <span style="font-size: 6cqw;text-shadow: 0 0 3px rgba(0, 0, 0, 25%);">vejr</span>
+                                </p>
+                                <p class="text-center lh-1" style="font-size: 25cqw;text-shadow: 0 0 3px rgba(0, 0, 0, 25%);" time>21.00</p>
                             </div>
                             <div class="d-flex justify-content-between mt-auto px-2">
                                 <div class="bg-black d-flex align-items-center justify-content-center rounded-circle bg-opacity-50 cursor-pointer" style="width: 35px; height: 35px;">
@@ -69,13 +73,13 @@
                             </div>
                         </div>
                         <div class="phone-content closed">
-                            <div class="d-flex flex-wrap p-1" apps>
-                                <div class="w-25 h-25 p-1 text-center">
+                            <div class="d-flex flex-wrap p-2 pt-3" apps>
+                                <div class="w-25 h-25 p-2 text-center">
                                     <div class="bg-primary rounded-3 p-2">
                                         <i class="bi bi-discord fs-4 d-flex justify-content-center"></i>
                                     </div>
                                 </div>
-                                <div class="w-25 h-25 p-1 text-center">
+                                <div class="w-25 h-25 p-2 text-center">
                                     <div class="bg-primary rounded-3 p-2">
                                         <i class="bi bi-discord fs-4 d-flex justify-content-center"></i>
                                     </div>
@@ -121,12 +125,48 @@
             let startY;
             let initialBottom = 0;
             let isSwiping = false;
+            let interval = 0;
+            let intervalId;
+
             const phoneContainerHeight = $(".phone-container").outerHeight();
             const phoneLockscreenHeight = $(".phone-lockscreen").outerHeight();
 
             $(document).on('click', '.phone-home-footer.home', function() {
                 $('.phone-home-footer').css("transition", "transform 0.3s").css("transform", "scale(1)");
             });
+
+            $(document).on('touchstart mousedown', '.phone.show .phone-content', function(event) {
+                console.log('is making apps active')
+                interval = 0;
+                intervalId = setInterval(function() {
+                    interval += 1;
+                    if (interval >= 100) {
+                        clearInterval(intervalId);
+
+                        event.preventDefault();
+                        appsActive();
+                    }
+                }, 1);
+            });
+
+            $(document).on('touchend mouseup', function(event) {
+                clearInterval(intervalId);
+            });
+
+            appsActive = () => {
+                console.log("apps i moveactive")
+                $('.app').addClass('editable');
+                setTimeout(() => {
+                    $('.app').each(function(index, elm) {
+                        const delay = index * 100; // Adjust the delay for each app
+                        $(this).css('animation-delay', `${delay}ms`);
+                    });
+                    // $(document).on('click', function(event) {
+                    //     console.log($(event.target).closest('.app').length == 0)
+                    //     if ($(event.target).closest('.app').length == 0) $('.app').removeClass('editable');
+                    // });
+                }, 500);
+            }
 
             $(document).on('touchstart mousedown', '.position:not(.active) .phone-home-footer:not(.home)', function(event) {
                 console.log('is swiping')

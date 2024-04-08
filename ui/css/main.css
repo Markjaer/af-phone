@@ -209,6 +209,7 @@ body {
     right: 3rem;
     width: 245px;
     height: 475px;
+    container-type: inline-size;
 }
 
 .position.active {
@@ -219,7 +220,6 @@ body {
     position: absolute;
     inset: auto;
     bottom: calc(-100% - 1rem);
-    right: 1rem;
     width: 100%;
     height: 100%;
     transition: bottom 350ms ease-in-out;
@@ -239,7 +239,8 @@ body {
     position: relative;
     display: flex;
     flex-direction: column;
-    border-radius: 2rem;
+    /* border-radius: 2rem; */
+    border-radius: 30px;
     padding: .5rem;
     background-color: #000;
     box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 50%);
@@ -247,7 +248,7 @@ body {
 
 .phone-container {
     position: relative;
-    border-radius: calc(2rem - .5rem);
+    border-radius: calc(30px - .5rem);
     height: 100%;
     overflow: hidden;
     display: flex;
@@ -351,7 +352,7 @@ body {
     position: absolute;
     inset: 0;
     z-index: 1;
-    padding: 2rem 0 1.5rem 0;
+    padding: 10cqw 0 4cqw 0;
 }
 
 .notification-content {
@@ -408,11 +409,17 @@ body {
     cursor: pointer;
 }
 
+.phone-home-footer:hover .phone-home {
+    opacity: 1;
+}
+
 .phone-home {
     height: 3px;
     width: 100%;
     background: #fff;
     border-radius: 150px;
+    opacity: .7;
+    transition: all 250ms ease-in-out;
 }
 
 .phone-lockscreen {
@@ -425,4 +432,36 @@ body {
     right: 0;
     bottom: 0;
     z-index: 2;
+}
+
+.phone-lockscreen .phone-baggrund {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    filter: brightness(0.75);
+}
+
+.app {
+    cursor: pointer;
+    position: relative;
+}
+
+@keyframes shake {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+    75% { transform: rotate(-2deg); }
+    100% { transform: rotate(0deg); }
+}
+
+.editable {
+    animation: shake 0.4s infinite;
+}
+
+.edit-mode {
+    display: none !important;
+}
+
+.editable .edit-mode {
+    display: flex !important;
 }

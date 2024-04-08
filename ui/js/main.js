@@ -2,83 +2,174 @@ const APP = `#app`;
 
 AF = {}
 AF.Apps = [
-    Contacts = {
-        app: 'contacts',
-        color: '#D6D6CB',
-        icon: 'fa fa-phone-alt',
-        tooltipText: 'Kontakter',
-        tooltipPos: 'top',
-        job: false,
-        blockedjobs: {},
-        slot: 1,
-        Alerts: 0,
-    },
     Settings = {
         app: 'settings',
         color: '#D6D6CB',
-        icon: 'fa fa-phone-alt',
-        tooltipText: 'Indstillinger',
-        tooltipPos: 'top',
-        job: false,
-        blockedjobs: {},
-        slot: 1,
-        Alerts: 0,
+        icon: 'settings.webp',
+        txt: 'Settings',
+    },
+    Contacts = {
+        app: 'contacts',
+        color: '#D6D6CB',
+        icon: 'contacts.webp',
+        txt: 'Contacts',
     },
     Messages = {
-        app: 'contacts',
+        app: 'messages',
         color: '#D6D6CB',
-        icon: 'fa fa-phone-alt',
-        tooltipText: 'Kontakter',
-        tooltipPos: 'top',
-        job: false,
-        blockedjobs: {},
-        slot: 1,
-        Alerts: 0,
+        icon: 'messages.webp',
+        txt: 'Messages',
+    },
+    Phone = {
+        app: 'phone',
+        color: '#D6D6CB',
+        icon: 'phone.png',
+        txt: 'Phone',
     },
     FaceTime = {
-        app: 'contacts',
+        app: 'facetime',
         color: '#D6D6CB',
-        icon: 'fa fa-phone-alt',
-        tooltipText: 'Kontakter',
-        tooltipPos: 'top',
-        job: false,
-        blockedjobs: {},
-        slot: 1,
-        Alerts: 0,
+        icon: 'facetime.webp',
+        txt: 'FaceTime',
     },
     Boks = {
-        app: 'contacts',
+        app: 'boks',
         color: '#D6D6CB',
-        icon: 'fa fa-phone-alt',
-        tooltipText: 'Kontakter',
-        tooltipPos: 'top',
-        job: false,
-        blockedjobs: {},
-        slot: 1,
-        Alerts: 0,
+        icon: 'discord.png',
+        txt: 'Boks',
     },
     Discord = {
-        app: 'contacts',
+        app: 'discord',
         color: '#D6D6CB',
-        icon: 'fa fa-phone-alt',
-        tooltipText: 'Kontakter',
-        tooltipPos: 'top',
-        job: false,
-        blockedjobs: {},
-        slot: 1,
-        Alerts: 0,
+        icon: 'discord.png',
+        txt: 'Discord',
     },
-    Twitter = {},
-    Tinder = {},
-    Snapchat = {},
-    Instagram = {},
-    Spotify = {},
-    Mails = {},
-    Webshops = {},
-    Bank = {},
-    Notes = {},
-    Images = {},
-    DriverLicense = {},
+    Twitter = {
+        app: 'twitter',
+        color: '#D6D6CB',
+        icon: 'twitter.webp',
+        txt: 'Twitter',
+    },
+    Tinder = {
+        app: 'tinder',
+        color: '#D6D6CB',
+        icon: 'tinder.png',
+        txt: 'Tinder',
+    },
+    Snapchat = {
+        app: 'snapchat',
+        color: '#D6D6CB',
+        icon: 'snapchat.webp',
+        txt: 'Snapchat',
+    },
+    Instagram = {
+        app: 'instagram',
+        color: '#D6D6CB',
+        icon: 'instagram.webp',
+        txt: 'Instagram',
+    },
+    Spotify = {
+        app: 'spotify',
+        color: '#D6D6CB',
+        icon: 'spotify.png',
+        txt: 'Spotify',
+    },
+    Mail = {
+        app: 'mail',
+        color: '#D6D6CB',
+        icon: 'mail.webp',
+        txt: 'Mail',
+    },
+    Webshops = {
+        app: 'webshops',
+        color: '#D6D6CB',
+        icon: 'webshops.jpg',
+        txt: 'Webshops',
+    },
+    Bank = {
+        app: 'bank',
+        color: '#D6D6CB',
+        icon: 'contacts.webp',
+        txt: 'Bank',
+    },
+    Notes = {
+        app: 'Notes',
+        color: '#D6D6CB',
+        icon: 'notes.webp',
+        txt: 'Notes',
+    },
+    Photos = {
+        app: 'photos',
+        color: '#D6D6CB',
+        icon: 'photos.webp',
+        txt: 'Photos',
+    },
+    DriverLicense = {
+        app: 'driverlicense',
+        color: '#D6D6CB',
+        icon: 'driverlicense.png',
+        txt: 'Driver License',
+    },
+    DriverLicense = {
+        app: 'driverlicense',
+        color: '#D6D6CB',
+        icon: 'driverlicense.png',
+        txt: 'Driver License',
+    },
+    DriverLicense = {
+        app: 'driverlicense',
+        color: '#D6D6CB',
+        icon: 'driverlicense.png',
+        txt: 'Driver License',
+    },
+    DriverLicense = {
+        app: 'driverlicense',
+        color: '#D6D6CB',
+        icon: 'driverlicense.png',
+        txt: 'Driver License',
+    },
+    DriverLicense = {
+        app: 'driverlicense',
+        color: '#D6D6CB',
+        icon: 'driverlicense.png',
+        txt: 'Driver License',
+    },
+    DriverLicense = {
+        app: 'driverlicense',
+        color: '#D6D6CB',
+        icon: 'driverlicense.png',
+        txt: 'Driver License',
+    },
+    DriverLicense = {
+        app: 'driverlicense',
+        color: '#D6D6CB',
+        icon: 'driverlicense.png',
+        txt: 'Driver License',
+    },
+    DriverLicense = {
+        app: 'driverlicense',
+        color: '#D6D6CB',
+        icon: 'driverlicense.png',
+        txt: 'Driver License',
+    },
+    DriverLicense = {
+        app: 'driverlicense',
+        color: '#D6D6CB',
+        icon: 'driverlicense.png',
+        txt: 'Driver License',
+    },
+    DriverLicense = {
+        app: 'driverlicense',
+        color: '#D6D6CB',
+        icon: 'driverlicense.png',
+        txt: 'Driver License',
+    },
+    DriverLicense = {
+        app: 'driverlicense',
+        color: '#D6D6CB',
+        icon: 'driverlicense.png',
+        txt: 'Driver License',
+    },
 ]
 AF.Notifications = {}
 AF.Data = {
@@ -88,7 +179,7 @@ AF.Data = {
 
 AF.Functions = {
     Open: function () {
-        $(APP).addClass('active');
+        $(APP).addClass('open');
         console.log("open", AF.Data)
 
         AF.Functions.SetupApps();
@@ -116,12 +207,21 @@ AF.Functions = {
         console.log(AF.Apps)
         var $apps = ``;
         AF.Apps.map((item, key) => {
+            var icon = '';
+            if (item?.icon?.includes(".")) {
+                icon = `<img src="./images/apps/${item?.icon}" draggable="false" width="100%" style="height: 17cqw;width: 17cqw;border-radius: 3.8cqw;box-shadow:0 0 15px 0px rgba(0, 0, 0, 25%);" />`;
+            } else {
+                icon = `<div class="rounded-3 p-2" style="background-color: ${item?.color};"><i class="${item?.icon} fs-4 d-flex justify-content-center"></i></div>`;
+            }
             $apps += `
-                <div class="w-25 h-25 p-1 text-center">
-                    <div class="rounded-3 p-2" style="background-color: ${item.color};">
-                        <i class="${item.icon} fs-4 d-flex justify-content-center"></i>
+                <div class="w-25 h-25 text-center">
+                    <div class="app" id="${item?.app}" style="margin: 0 1cqw 6cqw 1cqw;">
+                        <span class="edit-mode position-absolute p-2 bg-secondary rounded-circle shadow border border-light border-opacity-25" style="top: -3cqw;left: 0;width: 6cqw;height: 6cqw;display:flex;align-items: center;justify-content: center;">
+                            <span style="font-size: 6cqw;">-</span>
+                        </span>
+                        ${icon}
+                        <p class="mt-0 text-truncate" style="font-size: 3.5cqw;text-shadow: 0 0 3px rgba(0, 0, 0, 25%);">${item?.txt}</p>
                     </div>
-                    <p class="mt-1" style="font-size: .5rem;">${item.tooltipText}</p>
                 </div>
             `;
         });
