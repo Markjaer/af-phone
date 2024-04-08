@@ -3,27 +3,35 @@
 - Prøve at lave det så custom som muligt.
 
 ## Apps:
-- [ ] Bank
-- [ ] Eboks
-- [ ] Discord
-- [ ] Twitter
-- [ ] Beskeder
-- [ ] Opkald
-- [ ] Facetime
+### Allerede downloadet:
 - [ ] Indstillinger
+- [ ] Kontakter
+- [ ] Beskeder
+- [ ] Telefon
+- [ ] FaceTime
+- [ ] Boks
+- [ ] Noter
 - [ ] Billeder
 - [ ] Kamera
-- [ ] Notifikationer
+- [ ] Bank
+- [ ] Mail
+- [ ] Find
+- [ ] Ur
+- [ ] Kort
+- [ ] Wallet
+- [ ] Kalender
+- [ ] App Store
+- [ ] Vejr
+
+### Ikke downloadet:
+- [ ] Discord
+- [ ] Twitter
 - [ ] Tinder
-- [ ] Noter
-- [ ] Kørekort
 - [ ] Snapchat
 - [ ] Instagram
-- [ ] Spotify - med bestemte musik (no copyright)
-- [ ] Ur
-- [ ] Mail
-- [ ] Oversigt over ejede køretøjer, boliger osv.
-- [ ] Online webshop
+- [ ] Spotify
+- [ ] Kørekort
+- [ ] Webshops
 
 ## To do:
 **Indstillinger:**

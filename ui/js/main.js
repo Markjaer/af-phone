@@ -14,10 +14,10 @@ AF.Apps = [
         Alerts: 0,
     },
     Settings = {
-        app: 'contacts',
+        app: 'settings',
         color: '#D6D6CB',
         icon: 'fa fa-phone-alt',
-        tooltipText: 'Kontakter',
+        tooltipText: 'Indstillinger',
         tooltipPos: 'top',
         job: false,
         blockedjobs: {},

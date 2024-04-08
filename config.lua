@@ -31,3 +31,17 @@ Config.Apps = {
     Images = {},
     DriverLicense = {},
 }
+
+Config.PhoneApplications = {
+    ["phone"] = { -- Needs to be unique
+        app = "phone", -- App route
+        color = "#04b543", -- App icon color
+        icon = "fa fa-phone-alt", -- App icon
+        tooltipText = "Phone", -- App name
+        tooltipPos = "top",
+        job = false, -- Job requirement
+        blockedjobs = {}, -- Jobs cannot use this app
+        slot = 1, -- App position
+        Alerts = 0, -- Alert count
+    },
+}
