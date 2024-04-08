@@ -3,7 +3,7 @@
 - Prøve at lave det så custom som muligt.
 
 ## Apps:
-### Allerede downloadet:
+- **Allerede downloadet**:
 - [ ] Indstillinger
 - [ ] Kontakter
 - [ ] Beskeder
@@ -23,7 +23,7 @@
 - [ ] App Store
 - [ ] Vejr
 
-### Ikke downloadet:
+- **Ikke downloadet**:
 - [ ] Discord
 - [ ] Twitter
 - [ ] Tinder
