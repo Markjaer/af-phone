@@ -19,6 +19,11 @@
     --transition: 150ms;
 }
 
+.light-mode {
+    --white-color: 0, 0, 0;
+    --dark-color: 0, 0, 0;
+}
+
 html, body {
     height: 100%;
 }
@@ -239,10 +244,9 @@ body {
     position: relative;
     display: flex;
     flex-direction: column;
-    /* border-radius: 2rem; */
     border-radius: 30px;
     padding: .5rem;
-    background-color: #000;
+    background-color: #000; /* COVER */
     box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 50%);
 }
 
@@ -342,6 +346,8 @@ body {
     width: 100%;
     height: 100%;
     z-index: 0;
+    border-radius: calc(30px - .5rem);
+    border: 1px solid #000; /* COVER */
 }
 
 .phone.popup .phone-content {
@@ -353,6 +359,8 @@ body {
     inset: 0;
     z-index: 1;
     padding: 10cqw 0 4cqw 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .notification-content {
@@ -405,7 +413,7 @@ body {
     right: 0;
     bottom: 0;
     z-index: 5;
-    padding: .5rem 5rem .5rem 5rem;
+    padding: 2.5cqw 25cqw 2.5cqw 25cqw;
     cursor: pointer;
 }
 
@@ -416,7 +424,7 @@ body {
 .phone-home {
     height: 3px;
     width: 100%;
-    background: #fff;
+    background: rgba(var(--white-color));
     border-radius: 150px;
     opacity: .7;
     transition: all 250ms ease-in-out;
@@ -426,7 +434,7 @@ body {
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding: 4rem 1rem 1rem 1rem;
+    padding: 20cqw 2.5cqw 5cqw 2.5cqw;
     position: absolute;
     left: 0;
     right: 0;
@@ -444,6 +452,30 @@ body {
 .app {
     cursor: pointer;
     position: relative;
+    transition: all 250ms ease-in-out;
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.app img {
+    pointer-events: none !important;
+}
+
+.app.editable {
+    position: relative;
+    transform: scale(1.2);
+    z-index: 2;
+}
+
+.app-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 50%);
+    z-index: 1;
 }
 
 @keyframes shake {
@@ -454,7 +486,7 @@ body {
     100% { transform: rotate(0deg); }
 }
 
-.editable {
+.shake {
     animation: shake 0.4s infinite;
 }
 
@@ -462,6 +494,62 @@ body {
     display: none !important;
 }
 
-.editable .edit-mode {
+.shake .edit-mode {
     display: flex !important;
 }
+
+.app-start {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.app-content {
+    position: absolute;
+    inset: 0;
+    background: rgba(var(--black-color));
+    z-index: -1;
+    transform: scale(.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 250ms ease-in-out;
+    border-radius: calc(30px - .5rem);
+}
+
+.app-content.active {
+    transform: scale(1);
+    opacity: 1;
+    z-index: 1;
+    visibility: visible;
+}
+
+.start-standard {
+    row-gap: 2cqw;
+    align-content: flex-start;
+    height: 100%;
+}
+
+.start-navigation {
+    margin-bottom: 1.5cqw;
+}
+
+.start-navigation .navigation-content {
+    background-color: rgba(var(--black-color), 50%);
+    border-radius: 50rem;
+    padding: 5px 7px;
+    display: flex;
+    gap: 2cqw;
+}
+
+.start-navigation .dots {
+    width: 1.75cqw;
+    height: 1.75cqw;
+    background-color: rgba(var(--text-color));
+    border-radius: 150px;
+}
+
+.start-navigation .dots.active {
+    background-color: rgba(var(--white-color));
+}
+
+.start-primary {}

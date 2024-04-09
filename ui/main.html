@@ -19,7 +19,7 @@
     <script type="text/javascript" src="https://unpkg.com/tippy.js@6" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <!-- JQuery -->
-    <script type="text/javascript" src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript" src="https://kit.fontawesome.com/48c8cc3987.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -44,7 +44,7 @@
                         
                         <div class="phone-header">
                             <div class="header-content">
-                                <p style="font-size: 5cqw;text-shadow: 0 0 3px rgba(0, 0, 0, 25%);" time>23:30</p>
+                                <p style="font-size: 5cqw;text-shadow: 0 0 3px rgba(0, 0, 0, 25%);font-weight: 500;" time>23:30</p>
                             </div>
                             <div class="header-content">
                                 <i style="font-size: 3cqw;text-shadow: 0 0 3px rgba(0, 0, 0, 25%);" class="bi bi-circle-fill d-flex"></i>
@@ -64,51 +64,105 @@
                                 <p class="text-center lh-1" style="font-size: 25cqw;text-shadow: 0 0 3px rgba(0, 0, 0, 25%);" time>21.00</p>
                             </div>
                             <div class="d-flex justify-content-between mt-auto px-2">
-                                <div class="bg-black d-flex align-items-center justify-content-center rounded-circle bg-opacity-50 cursor-pointer" style="width: 35px; height: 35px;">
-                                    <img width="17px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAsUlEQVR4nO3VTQrCMBBA4ekdxE3jffQyeiA9hti9wYvUjeBCb/CkpEIorSYwSVD6lrP58gcRmRsJuBCeFa2ITH4+Su2YgvAzwn1owocIeK8JL4BbAHoHlmpwF7ALgLeiHVAHwHUKuPKAY78QA5y8eaUOd3mA8War91BSxQSQFcZ9HDYrjLtbC5yzHjXuQZkebXLCo82wWnxJTxo0w8MkVRSErx/cNiW8mcBbYJ0Mln/oBS0ocV3xIDB/AAAAAElFTkSuQmCC">
+                                <div class="bg-black d-flex align-items-center justify-content-center rounded-circle bg-opacity-50 cursor-pointer" style="width: 13cqw; height: 13cqw;">
+                                    <img width="100%" style="width: 6cqw; height: 6cqw; object-fit: contain;filter: invert(1);" src="./images/flashlight.png">
                                 </div>
-                                <div class="bg-black d-flex align-items-center justify-content-center rounded-circle bg-opacity-50 cursor-pointer" style="width: 35px; height: 35px;">
-                                    <img width="17px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAABRUlEQVR4nO2VzU7CQBRGR7ZSeQyWAkujewkQX4ifhSHxXYz6BKiJ8QF8heoGXPmzP+YmH3GCpTOlZWHSk8xm7jc9mdvp1LmaGgG0gRe2Y7W2KwPwrIc9eXMPhHksJfYBDoEZ8UxsjYsFGABv7I9XoJ8ltkKIJTAGOuqEja7mVhHr0yxxiGsgyenYEXCzseYEOPUniopNeqDchR0i4FvDDt1ItcaG3KRnu4qX650CVzm5uTKtvLa7AuKxt9MQQ2WnVYiPVbf2hrhXtluFuKn6V4T4U9mkCnFSQPzhnfDS4k6BK3OhbK8K8UT1UYR4oOysCvHKWqfMPCd36X1O71WI0aXQUG5op1fv3MbC26ldIHfk4AqK1/LWn4W/622nt6GHuB3EqIVTHZ6mPpue5ra2NySO+TuVJc0S9/csT4Hzba+qpub/8wOkTL4J7un1cAAAAABJRU5ErkJggg==">
+                                <div class="bg-black d-flex align-items-center justify-content-center rounded-circle bg-opacity-50 cursor-pointer" style="width: 13cqw; height: 13cqw;">
+                                    <img width="100%" style="width: 6cqw; height: 6cqw; object-fit: contain;filter: invert(1);" src="./images/camera.webp">
                                 </div>
                             </div>
                         </div>
                         <div class="phone-content closed">
-                            <div class="d-flex flex-wrap p-2 pt-3" apps>
-                                <div class="w-25 h-25 p-2 text-center">
-                                    <div class="bg-primary rounded-3 p-2">
-                                        <i class="bi bi-discord fs-4 d-flex justify-content-center"></i>
+                            <div class="app-start">
+                                <div class="start-standard d-flex flex-wrap p-2 pt-2" apps>
+                                    <div class="w-25 h-25 text-center">
+                                        <div class="app" id="settings" style="margin: 0 1cqw 3cqw 1cqw;">
+                                            <span class="edit-mode position-absolute p-2 bg-secondary rounded-circle shadow border border-light border-opacity-25" style="top: -3cqw;left: 0;width: 6cqw;height: 6cqw;display:flex;align-items: center;justify-content: center;">
+                                                <span style="font-size: 6cqw;">-</span>
+                                            </span>
+                                            <img src="./images/apps/settings.webp" draggable="false" width="100%" style="height: 15cqw;width: 15cqw;border-radius: 3.8cqw;box-shadow:0 0 15px 0px rgba(0, 0, 0, 25%);">
+                                            <p class="mt-0 text-truncate" style="font-size: 3.5cqw;text-shadow: 0 0 3px rgba(0, 0, 0, 25%);">Settings</p>
+                                        </div>
+                                    </div>
+                                    <div class="w-25 h-25 p-2 text-center">
+                                        <div class="bg-primary rounded-3 p-2">
+                                            <i class="bi bi-discord fs-4 d-flex justify-content-center"></i>
+                                        </div>
+                                    </div>
+                                    <div class="w-25 h-25 p-1 text-center">
+                                        <div class="bg-primary rounded-3 p-2">
+                                            <i class="bi bi-discord fs-4 d-flex justify-content-center"></i>
+                                        </div>
+                                    </div>
+                                    <div class="w-25 h-25 p-1 text-center">
+                                        <div class="bg-primary rounded-3 p-2">
+                                            <i class="bi bi-discord fs-4 d-flex justify-content-center"></i>
+                                        </div>
+                                    </div>
+                                    <div class="w-25 h-25 p-1 text-center">
+                                        <div class="bg-primary rounded-3 p-2">
+                                            <i class="bi bi-discord fs-4 d-flex justify-content-center"></i>
+                                        </div>
+                                    </div>
+                                    <div class="w-25 h-25 p-1 text-center">
+                                        <div class="bg-primary rounded-3 p-2">
+                                            <i class="bi bi-discord fs-4 d-flex justify-content-center"></i>
+                                        </div>
+                                    </div>
+                                    <div class="w-25 h-25 p-1 text-center">
+                                        <div class="bg-primary rounded-3 p-2">
+                                            <i class="bi bi-discord fs-4 d-flex justify-content-center"></i>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="w-25 h-25 p-2 text-center">
-                                    <div class="bg-primary rounded-3 p-2">
-                                        <i class="bi bi-discord fs-4 d-flex justify-content-center"></i>
+                                <div class="start-navigation d-flex flex-wrap align-items-center justify-content-center">
+                                    <div class="navigation-content">
+                                        <div class="dots active"></div>
+                                        <div class="dots"></div>
+                                        <div class="dots"></div>
                                     </div>
                                 </div>
-                                <div class="w-25 h-25 p-1 text-center">
-                                    <div class="bg-primary rounded-3 p-2">
-                                        <i class="bi bi-discord fs-4 d-flex justify-content-center"></i>
+                                <div class="start-primary d-flex flex-wrap p-1 pt-2 m-2 bg-secondary bg-opacity-75 rounded-4 mt-auto" primary-apps>
+                                    <div class="w-25 h-25 text-center">
+                                        <div class="app" id="tinder" style="margin: 0 1cqw 0 1cqw;">
+                                            <span class="edit-mode position-absolute p-2 bg-secondary rounded-circle shadow border border-light border-opacity-25" style="top: -3cqw;left: 0;width: 6cqw;height: 6cqw;display:flex;align-items: center;justify-content: center;">
+                                                <span style="font-size: 6cqw;">-</span>
+                                            </span>
+                                            <img src="./images/apps/tinder.png" draggable="false" width="100%" style="height: 15cqw;width: 15cqw;border-radius: 3.8cqw;box-shadow:0 0 15px 0px rgba(0, 0, 0, 25%);">
+                                            <p class="mt-0 text-truncate" style="font-size: 3.5cqw;text-shadow: 0 0 3px rgba(0, 0, 0, 25%);">Tinder</p>
+                                        </div>
+                                    </div>
+                                    <div class="w-25 h-25 text-center">
+                                        <div class="app" id="discord" style="margin: 0 1cqw 0 1cqw;">
+                                            <span class="edit-mode position-absolute p-2 bg-secondary rounded-circle shadow border border-light border-opacity-25" style="top: -3cqw;left: 0;width: 6cqw;height: 6cqw;display:flex;align-items: center;justify-content: center;">
+                                                <span style="font-size: 6cqw;">-</span>
+                                            </span>
+                                            <img src="./images/apps/discord.png" draggable="false" width="100%" style="height: 15cqw;width: 15cqw;border-radius: 3.8cqw;box-shadow:0 0 15px 0px rgba(0, 0, 0, 25%);">
+                                            <p class="mt-0 text-truncate" style="font-size: 3.5cqw;text-shadow: 0 0 3px rgba(0, 0, 0, 25%);">Discord</p>
+                                        </div>
+                                    </div>
+                                    <div class="w-25 h-25 text-center">
+                                        <div class="app" id="spotify" style="margin: 0 1cqw 0 1cqw;">
+                                            <span class="edit-mode position-absolute p-2 bg-secondary rounded-circle shadow border border-light border-opacity-25" style="top: -3cqw;left: 0;width: 6cqw;height: 6cqw;display:flex;align-items: center;justify-content: center;">
+                                                <span style="font-size: 6cqw;">-</span>
+                                            </span>
+                                            <img src="./images/apps/spotify.png" draggable="false" width="100%" style="height: 15cqw;width: 15cqw;border-radius: 3.8cqw;box-shadow:0 0 15px 0px rgba(0, 0, 0, 25%);">
+                                            <p class="mt-0 text-truncate" style="font-size: 3.5cqw;text-shadow: 0 0 3px rgba(0, 0, 0, 25%);">Spotify</p>
+                                        </div>
+                                    </div>
+                                    <div class="w-25 h-25 text-center">
+                                        <div class="app" id="mail" style="margin: 0 1cqw 0 1cqw;">
+                                            <span class="edit-mode position-absolute p-2 bg-secondary rounded-circle shadow border border-light border-opacity-25" style="top: -3cqw;left: 0;width: 6cqw;height: 6cqw;display:flex;align-items: center;justify-content: center;">
+                                                <span style="font-size: 6cqw;">-</span>
+                                            </span>
+                                            <img src="./images/apps/mail.webp" draggable="false" width="100%" style="height: 15cqw;width: 15cqw;border-radius: 3.8cqw;box-shadow:0 0 15px 0px rgba(0, 0, 0, 25%);">
+                                            <p class="mt-0 text-truncate" style="font-size: 3.5cqw;text-shadow: 0 0 3px rgba(0, 0, 0, 25%);">Mail</p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="w-25 h-25 p-1 text-center">
-                                    <div class="bg-primary rounded-3 p-2">
-                                        <i class="bi bi-discord fs-4 d-flex justify-content-center"></i>
-                                    </div>
-                                </div>
-                                <div class="w-25 h-25 p-1 text-center">
-                                    <div class="bg-primary rounded-3 p-2">
-                                        <i class="bi bi-discord fs-4 d-flex justify-content-center"></i>
-                                    </div>
-                                </div>
-                                <div class="w-25 h-25 p-1 text-center">
-                                    <div class="bg-primary rounded-3 p-2">
-                                        <i class="bi bi-discord fs-4 d-flex justify-content-center"></i>
-                                    </div>
-                                </div>
-                                <div class="w-25 h-25 p-1 text-center">
-                                    <div class="bg-primary rounded-3 p-2">
-                                        <i class="bi bi-discord fs-4 d-flex justify-content-center"></i>
-                                    </div>
-                                </div>
+                            </div>
+                            <div class="app-content" id="settings-page">
+                                
                             </div>
                         </div>
                         <div class="phone-home-footer">
@@ -120,65 +174,139 @@
         </div>
     </div>
     <script src="js/main.js"></script>
+    <script src="js/Sortable.js"></script>
     <script>
         $(function() {
             let startY;
             let initialBottom = 0;
-            let isSwiping = false;
+            let isEditable = isMoveable = isSwiping = hasMouseUp = false;
             let interval = 0;
+            let moveSortable1;
+            let moveSortable2;
             let intervalId;
 
             const phoneContainerHeight = $(".phone-container").outerHeight();
             const phoneLockscreenHeight = $(".phone-lockscreen").outerHeight();
 
-            $(document).on('click', '.phone-home-footer.home', function() {
-                $('.phone-home-footer').css("transition", "transform 0.3s").css("transform", "scale(1)");
-            });
-
-            $(document).on('touchstart mousedown', '.phone.show .phone-content', function(event) {
-                console.log('is making apps active')
+            appsEditable = (elm) => {
+                isEditable = true;
                 interval = 0;
-                intervalId = setInterval(function() {
-                    interval += 1;
-                    if (interval >= 100) {
-                        clearInterval(intervalId);
 
-                        event.preventDefault();
-                        appsActive();
-                    }
-                }, 1);
-            });
+                console.log("editable", elm)
 
-            $(document).on('touchend mouseup', function(event) {
-                clearInterval(intervalId);
-            });
+                elm.addClass('editable');
+                $('<div class="app-backdrop"></div>').insertBefore(elm);
+                $('.app-backdrop').on('click', function() {
+                    $('.app-backdrop').remove();
+                    elm.removeClass('editable');
+                    interval = 0;
+                    isEditable = false;
+                    hasMouseUp = false;
+                    clearInterval(intervalId);
+                });
+            }
 
-            appsActive = () => {
+            appsMoveable = (sortElm) => {
+                isMoveable = true;
+                interval = 0;
                 console.log("apps i moveactive")
-                $('.app').addClass('editable');
+                $('.app').addClass('shake');
+                moveSortable1 = new Sortable($('[apps]')[0], {
+                    group: 'shared',
+                    swapThreshold: 1,
+                    animation: 150,
+                    onChange: function(event, ui) {
+                        console.log('onChange')
+                    },
+                    onUpdate: function(event, ui) {
+                        console.log('onUpdate')
+                        // var type = (event.from.getAttribute('data-type') ? event.from.getAttribute('data-type') : '');
+                        // var url = (event.from.getAttribute('data-url') ? event.from.getAttribute('data-url') : '');
+                        
+                        // var data = Array.from($(this.el).find('.task.active')).map((element, key) => {
+                        //     var content = $(element).find('.task-counter').attr('data-tippy-content');
+                        //     $(element).find('.task-counter').attr('data-tippy-content', content.replace(content.match(/\d+/)[0], (key + 1)));
+                        //     return element.getAttribute('data-id');
+                        // });
+                
+                        // request(`${URL}/assets/lib/sortable/sortable`, 'POST', {type: type, data: data}).then((result) => {
+                        //     if (url.length > 0) {
+                        //         // window.location = url;
+                        //     }
+                        //     console.log(result);
+                        // });
+                        // initializeTippy();
+                    }
+                });
+                moveSortable2 = new Sortable($('[primary-apps]')[0], {
+                    group: 'shared',
+                    swapThreshold: 1,
+                    animation: 150
+                });
                 setTimeout(() => {
                     $('.app').each(function(index, elm) {
-                        const delay = index * 100; // Adjust the delay for each app
+                        const delay = index * 100;
                         $(this).css('animation-delay', `${delay}ms`);
                     });
-                    // $(document).on('click', function(event) {
-                    //     console.log($(event.target).closest('.app').length == 0)
-                    //     if ($(event.target).closest('.app').length == 0) $('.app').removeClass('editable');
-                    // });
                 }, 500);
             }
 
-            $(document).on('touchstart mousedown', '.position:not(.active) .phone-home-footer:not(.home)', function(event) {
-                console.log('is swiping')
-                isSwiping = true;
-                if (event.type === 'touchstart') {
-                    startY = event.touches[0].clientY;
+            $(document).on('touchstart mousedown', '.phone.show .app-start', function(event) {
+                console.log('is making apps active')
+
+                if ($(event.target).closest('.app').length == 0) {
+                    if (moveSortable1 instanceof Sortable) moveSortable1.destroy(); moveSortable1 = null;
+                    if (moveSortable2 instanceof Sortable) moveSortable2.destroy(); moveSortable2 = null;
+                    $('.app').removeClass('shake');
+                    interval = 0;
+                    isMoveable = false;
+                    clearInterval(intervalId);
+                    if (!isEditable) {
+                        interval = 0;
+                        intervalId = setInterval(function() {
+                            interval += 1;
+                            if (interval >= 100) {
+                                clearInterval(intervalId);
+    
+                                event.preventDefault();
+                                appsMoveable();
+                            }
+                        }, 1);
+                    }
                 } else {
-                    startY = event.clientY;
+                    $('.app-backdrop').remove();
+                    $('.app').removeClass('editable');
+                    interval = 0;
+                    isEditable = false;
+                    clearInterval(intervalId);
+                    if (!isMoveable) {
+                        interval = 0;
+                        intervalId = setInterval(function() {
+                            interval += 1;
+                            if (interval >= 100) {
+                                clearInterval(intervalId);
+
+                                event.preventDefault();
+                                appsEditable($(event.target).closest('.app'));
+                            }
+                        }, 1);
+                    }
                 }
             });
 
             $(document).on('touchmove mousemove', function(event) {
+                if (isEditable && !isMoveable && !hasMouseUp) {
+                    if ($(event.target).closest('.app').length == 0) {
+                        event.preventDefault();
+                        console.log("ude")
+
+                        $('.app-backdrop').remove();
+                        $('.app').removeClass('editable');
+                        isEditable = false;
+                        appsMoveable($('.app.editable'));
+                    }
+                }
+
                 if (isSwiping && !$('.position').hasClass('active')) {
                     let currentY;
                     if (event.type === 'touchmove') {
@@ -194,10 +322,9 @@
                     initialBottom = Math.max(0, initialBottom);
                     initialBottom = Math.min(phoneContainerHeight, initialBottom); 
                     
-                    let blurIntensity = (initialBottom / (phoneContainerHeight / 3)) * 2;
-                    blurIntensity = Math.min(10, blurIntensity);
+                    let blurIntensity = Math.min(10, (initialBottom / (phoneContainerHeight / 3)) * 2);
 
-                    $('.phone-lockscreen').css('filter', 'blur(' + blurIntensity + 'px)');
+                    $('.phone-lockscreen .phone-baggrund').css('filter', 'blur(' + blurIntensity + 'px)');
                     $('.phone-lockscreen, .phone-home-footer').css('bottom', initialBottom + 'px');
 
                     startY = currentY;
@@ -205,6 +332,11 @@
             });
 
             $(document).on('touchend mouseup', function(event) {
+                if (isEditable) {
+                    hasMouseUp = true;
+                }
+                clearInterval(intervalId);
+
                 if (isSwiping && !$('.position').hasClass('active')) {
                     if (initialBottom >= phoneContainerHeight / 2) {
                         $('.phone-lockscreen').animate({ bottom: phoneContainerHeight + 'px', opacity: 0, display: 'none' }, 300);
@@ -220,6 +352,35 @@
                     $('.phone-lockscreen').css('filter', 'none');
                     initialBottom = 0;
                     isSwiping = false;
+                }
+            });
+
+            $(document).on('touchstart mousedown', '.position:not(.active) .phone-home-footer:not(.home)', function(event) {
+                console.log('is swiping')
+                isSwiping = true;
+                if (event.type === 'touchstart') {
+                    startY = event.touches[0].clientY;
+                } else {
+                    startY = event.clientY;
+                }
+            });
+
+            $(document).on('click', '.app', function(event) {
+                if (!isEditable && !isMoveable) {
+                    var $target = $(this);
+                    $(`.app-content`).removeClass('active');
+                    $(`#${$($target).attr('id')}-page`).addClass('active');
+                    setTimeout(() => {
+                        $('body').addClass(`${$($target).attr('mode')}-mode`);
+                    }, 250);
+                }
+            });
+
+            $(document).on('click', '.phone-home-footer.home', function() {
+                $('.phone-home-footer').css("transition", "transform 0.3s").css("transform", "scale(1)");
+                if (!isSwiping) {
+                    $('.app-content').removeClass('active');
+                    $('body').removeClass('light-mode');
                 }
             });
 
@@ -258,6 +419,7 @@
                     });
                 }
             });
+
             $('.position.active').draggable({
                 containment: 'parent',
                 stop: function(event, ui) {
