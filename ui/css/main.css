@@ -442,6 +442,10 @@ body {
     z-index: 2;
 }
 
+.phone-lockscreen.open {
+    display: none;
+}
+
 .phone-lockscreen .phone-baggrund {
     position: absolute;
     inset: 0;
@@ -524,9 +528,19 @@ body {
 }
 
 .start-standard {
+    height: 100%;
+}
+
+.standard-page {
+    display: none;
+    flex-wrap: wrap;
     row-gap: 2cqw;
     align-content: flex-start;
-    height: 100%;
+    width: 100%;
+}
+
+.standard-page.active {
+    display: flex;
 }
 
 .start-navigation {

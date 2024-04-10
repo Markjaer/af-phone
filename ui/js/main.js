@@ -2,7 +2,23 @@ const APP = `#app`;
 
 AF = {}
 AF.Settings = {
-    MaxSlots: 24
+    MaxSlotsNonPrimary: 24, // Telefon slots som ikke er i navigationen i bunden
+    MaxSlotsPrimary: 4, // Telefon slots som er i navigationen i bunden
+
+    StartY: null,
+    InitialBottom: 0,
+    PhoneContainerHeight: 0,
+
+    MoveSortable1: null,
+    MoveSortable2: null,
+
+    IntervalId: null,
+    Interval: 0,
+
+    IsEditable: false,
+    IsMoveable: false,
+    IsSwiping: false,
+    HasMouseUp: false,
 }
 AF.Apps = [
     Settings = {
@@ -230,6 +246,7 @@ AF.Functions = {
         setInterval(() => {
             AF.Functions.UpdateTimer();
         }, 1000);
+        AF.Settings.PhoneContainerHeight = $(".phone-container").outerHeight();
     },
     SetPosition: function() {
         if (AF.Data.PhoneData.metadata) {
@@ -250,7 +267,7 @@ AF.Functions = {
         var mode = 'dark';
         var icon = (item?.icon?.includes(".")) ? `<img src="./images/apps/${item?.icon}" draggable="false" width="100%" style="height: 15cqw;width: 15cqw;border-radius: 3.8cqw;box-shadow:0 0 15px 0px rgba(0, 0, 0, 25%);" />` : `<div class="rounded-3 p-2" style="background-color: ${item?.color};"><i class="${item?.icon} fs-4 d-flex justify-content-center"></i></div>`;
         return `
-            <div class="w-25 text-center" id="${type.toString()+'-'+key}">
+            <div class="app-case w-25 text-center" id="${type.toString()+'-'+key}">
                 <div class="app" id="${item?.app}" mode="${mode}" style="margin: 0 .5cqw;">
                     <span class="edit-mode position-absolute p-2 bg-secondary rounded-circle shadow border border-light border-opacity-25" style="top: -3cqw;left: 0;width: 6cqw;height: 6cqw;display:flex;align-items: center;justify-content: center;">
                         <span style="font-size: 6cqw;">-</span>
@@ -262,13 +279,33 @@ AF.Functions = {
         `;
     },
     SetupApps: function () {
-        var $trueApps = $falseApps = ``;
-        
-        AF.Apps.filter(app => app.primary === false).sort((a, b) => a.slot - b.slot).map((item, key) => $falseApps += AF.Functions.GetApps(key, item, false));
-        AF.Apps.filter(app => app.primary === true).sort((a, b) => a.slot - b.slot).map((item, key) => $trueApps += AF.Functions.GetApps(key, item, true));
+        var falseApps = trueApps = pages = ``;
+        var falseFiltered = AF.Apps.filter(app => app.primary === false).sort((a, b) => a.slot - b.slot);
+        var trueFiltered = AF.Apps.filter(app => app.primary === true).sort((a, b) => a.slot - b.slot);
+        var falseGroupedApps = [];
+    
+        for (let fi = 0; fi < falseFiltered.length; fi += AF.Settings.MaxSlotsNonPrimary) {
+            falseGroupedApps.push(falseFiltered.slice(fi, fi + AF.Settings.MaxSlotsNonPrimary));
+        }
+    
+        falseGroupedApps.forEach((item, key) => {
+            pages += `<div class="dots${(key == 0 ? ' active' : '')}"></div>`;
+            falseApps += `<div class="standard-page${(key == 0 ? ' active' : '')}" id="page-${(key + 1)}">`;
+            item.forEach((elm, num) => {
+                falseApps += AF.Functions.GetApps(num, elm, false);
+            });
+            falseApps += `</div>`;
+        });
+    
+        trueFiltered.forEach((item, key) => trueApps += AF.Functions.GetApps(key, item, true));
 
-        $('[apps]').html($falseApps);
-        $('[primary-apps]').html($trueApps);
+        $('[standard-apps]').html(falseApps);
+        if (falseGroupedApps.length <= 1) {
+            $('[pages]').html('');
+        } else {
+            $('[pages] .navigation-content').html(pages);
+        }
+        $('[primary-apps]').html(trueApps);
     },
     CurrencyFormat: function () {
         return new Intl.NumberFormat('da-DK', {
@@ -276,7 +313,7 @@ AF.Functions = {
             currency: 'DKK'
         });
     },
-    UpdateTimer: function() {
+    UpdateTimer: function () {
         var today = new Date();
         var time = (today.getHours().toString().length == 1 ? '0' + today.getHours() : today.getHours()) + "." + (today.getMinutes().toString().length == 1 ? '0' + today.getMinutes() : today.getMinutes());
         if ($(APP).attr('current-time') != time.toString()) {
@@ -284,12 +321,254 @@ AF.Functions = {
             $('[time]').text(time);
         }
     },
+    AppsEditable: function (elm) {
+        console.log("apps is editable");
+        
+        AF.Settings.IsEditable = true;
+        AF.Settings.Interval = 0;
+
+        elm.addClass('editable');
+        $('<div class="app-backdrop"></div>').insertBefore(elm);
+        $('.app-backdrop').on('click', function() {
+            $('.app-backdrop').remove();
+            elm.removeClass('editable');
+            AF.Settings.Interval = 0;
+            AF.Settings.IsEditable = false;
+            AF.Settings.HasMouseUp = false;
+            clearInterval(AF.Settings.IntervalId);
+        });
+    },
+    AppsMoveable: function () {
+        console.log("apps is moveactive");
+
+        $('.app').addClass('shake');
+
+        AF.Settings.IsMoveable = true;
+        AF.Settings.Interval = 0;
+
+        var sSlot = $('[standard-apps] .standard-page.active .app-case').length;
+        var pSlot = $('[primary-apps] .app-case').length;
+
+        AF.Settings.MoveSortable1 = new Sortable($('[standard-apps] .standard-page.active')[0], {
+            group: {
+                name: 'shared',
+                put: function (to) {
+                    return sSlot < AF.Settings.MaxSlotsNonPrimary;
+                }
+            },
+            swapThreshold: 1,
+            animation: 150,
+            onStart: function(event, ui) {
+                console.log('moveSortable1 onStart');
+                sSlot = $('[standard-apps] .standard-page.active .app-case').length;
+                pSlot = $('[primary-apps] .app-case').length;
+            },
+            onChange: function(event, ui) {
+                console.log('moveSortable1 onChange');
+                sSlot = $('[standard-apps] .standard-page.active .app-case').length;
+                pSlot = $('[primary-apps] .app-case').length;
+            },
+            onUpdate: function(event, ui) {
+                console.log('moveSortable1 onUpdate');
+                sSlot = $('[standard-apps] .standard-page.active .app-case').length;
+                pSlot = $('[primary-apps] .app-case').length;
+                // var data = Array.from($(this.el).find('.task.active')).map((element, key) => {
+                //     var content = $(element).find('.task-counter').attr('data-tippy-content');
+                //     $(element).find('.task-counter').attr('data-tippy-content', content.replace(content.match(/\d+/)[0], (key + 1)));
+                //     return element.getAttribute('data-id');
+                // });
+            }
+        });
+        AF.Settings.MoveSortable2 = new Sortable($('[primary-apps]')[0], {
+            group: {
+                name: 'shared',
+                put: function (to) {
+                    return pSlot < AF.Settings.MaxSlotsPrimary;
+                }
+            },
+            swapThreshold: 1,
+            animation: 150,
+            onStart: function(event, ui) {
+                console.log('moveSortable2 onStart');
+                sSlot = $('[standard-apps] .standard-page.active .app-case').length;
+                pSlot = $('[primary-apps] .app-case').length;
+            },
+            onChange: function(event, ui) {
+                console.log('moveSortable2 onChange');
+                sSlot = $('[standard-apps] .standard-page.active .app-case').length;
+                pSlot = $('[primary-apps] .app-case').length;
+            },
+            onUpdate: function(event, ui) {
+                console.log('moveSortable2 onUpdate');
+                sSlot = $('[standard-apps] .standard-page.active .app-case').length;
+                pSlot = $('[primary-apps] .app-case').length;
+                // var data = Array.from($(this.el).find('.task.active')).map((element, key) => {
+                //     var content = $(element).find('.task-counter').attr('data-tippy-content');
+                //     $(element).find('.task-counter').attr('data-tippy-content', content.replace(content.match(/\d+/)[0], (key + 1)));
+                //     return element.getAttribute('data-id');
+                // });
+            }
+        });
+        setTimeout(() => {
+            $('.app').each(function(index, elm) {
+                const delay = index * 100;
+                $(this).css('animation-delay', `${delay}ms`);
+            });
+        }, 500);
+    },
     Close: function () {
         $(APP).hide();
         $.post(`https://${GetParentResourceName()}/Close`);
         console.log("close")
     },
 }
+
+$(document).on('touchstart mousedown', '.phone.show .app-start', function(event) {
+    if ($(event.target).closest('.app').length == 0) {
+        console.log('making apps moveable');
+
+        $('.app').removeClass('shake');
+
+        // Resetter sortables
+        if (AF.Settings.MoveSortable1 instanceof Sortable) AF.Settings.MoveSortable1.destroy(); AF.Settings.MoveSortable1 = null;
+        if (AF.Settings.MoveSortable2 instanceof Sortable) AF.Settings.MoveSortable2.destroy(); AF.Settings.MoveSortable2 = null;
+
+        AF.Settings.Interval = 0;
+        AF.Settings.IsMoveable = false;
+
+        clearInterval(AF.Settings.IntervalId);
+
+        if (!AF.Settings.IsEditable) {
+            AF.Settings.IntervalId = setInterval(function() {
+                AF.Settings.Interval += 1;
+
+                if (AF.Settings.Interval >= 100) {
+                    event.preventDefault();
+
+                    clearInterval(AF.Settings.IntervalId);
+
+                    AF.Functions.AppsMoveable();
+                }
+            }, 1);
+        }
+    } else {
+        console.log('making apps editable');
+
+        $('.app-backdrop').remove();
+        $('.app').removeClass('editable');
+
+        AF.Settings.Interval = 0;
+        AF.Settings.IsEditable = false;
+
+        clearInterval(AF.Settings.IntervalId);
+
+        if (!AF.Settings.IsMoveable) {
+            AF.Settings.IntervalId = setInterval(function() {
+                AF.Settings.Interval += 1;
+
+                if (AF.Settings.Interval >= 100) {
+                    event.preventDefault();
+
+                    clearInterval(AF.Settings.IntervalId);
+
+                    AF.Functions.AppsEditable($(event.target).closest('.app'));
+                }
+            }, 1);
+        }
+    }
+});
+
+$(document).on('touchmove mousemove', function(event) {
+    if (AF.Settings.IsEditable && !AF.Settings.IsMoveable && !AF.Settings.HasMouseUp) {
+        if ($(event.target).closest('.app').length == 0) {
+            event.preventDefault();
+
+            $('.app-backdrop').remove();
+            $('.app').removeClass('editable');
+
+            AF.Settings.IsEditable = false;
+            AF.Functions.AppsMoveable();
+        }
+    }
+
+    if (AF.Settings.IsSwiping && !$('.position').hasClass('active')) {
+        let currentY;
+        if (event.type === 'touchmove') {
+            currentY = event.touches[0].clientY;
+        } else {
+            currentY = event.clientY;
+        }
+
+        let deltaY = AF.Settings.StartY - currentY;
+
+        AF.Settings.InitialBottom += deltaY;
+
+        AF.Settings.InitialBottom = Math.max(0, AF.Settings.InitialBottom);
+        AF.Settings.InitialBottom = Math.min(AF.Settings.PhoneContainerHeight, AF.Settings.InitialBottom); 
+        
+        let blurIntensity = Math.min(10, (AF.Settings.InitialBottom / (AF.Settings.PhoneContainerHeight / 3)) * 2);
+
+        $('.phone-lockscreen .phone-baggrund').css('filter', 'blur(' + blurIntensity + 'px)');
+        $('.phone-lockscreen, .phone-home-footer').css('bottom', AF.Settings.InitialBottom + 'px');
+
+        AF.Settings.StartY = currentY;
+    }
+});
+
+$(document).on('touchend mouseup', function(event) {
+    if (AF.Settings.IsEditable) {
+        AF.Settings.HasMouseUp = true;
+    }
+    clearInterval(AF.Settings.IntervalId);
+
+    if (AF.Settings.IsSwiping && !$('.position').hasClass('active')) {
+        if (AF.Settings.InitialBottom >= (AF.Settings.PhoneContainerHeight / 2)) {
+            $('.phone-lockscreen').animate({ bottom: AF.Settings.PhoneContainerHeight + 'px', opacity: 0, display: 'none' }, 300);
+            $('.phone-home-footer').css({bottom: '0px', opacity: '0'});
+            $('.phone-home-footer').animate({opacity: '1'});
+            $('.phone-lockscreen').addClass('open');
+            $('.phone-home-footer').addClass('home');
+            $('.phone-content').removeClass('closed');
+        } else {
+            $('.phone-lockscreen, .phone-home-footer').animate({ bottom: '0px' }, 300);
+        }
+
+        $('.phone-lockscreen').css('filter', 'none');
+
+        AF.Settings.InitialBottom = 0;
+        AF.Settings.IsSwiping = false;
+    }
+});
+
+$(document).on('touchstart mousedown', '.position:not(.active) .phone-home-footer:not(.home)', function(event) {
+    console.log('swiping up');
+    
+    AF.Settings.IsSwiping = true;
+    if (event.type === 'touchstart') {
+        AF.Settings.StartY = event.touches[0].clientY;
+    } else {
+        AF.Settings.StartY = event.clientY;
+    }
+});
+
+$(document).on('click', '.app', function(event) {
+    if (!AF.Settings.IsEditable && !AF.Settings.IsMoveable) {
+        var $target = $(this);
+        $(`.app-content`).removeClass('active');
+        $(`#${$($target).attr('id')}-page`).addClass('active');
+        setTimeout(() => {
+            $('body').addClass(`${$($target).attr('mode')}-mode`);
+        }, 250);
+    }
+});
+
+$(document).on('click', '.phone-home-footer.home', function() {
+    $('.phone-home-footer').css("transition", "transform 0.3s").css("transform", "scale(1)");
+    if (!AF.Settings.IsSwiping) {
+        $('.app-content').removeClass('active');
+        $('body').removeClass('light-mode');
+    }
+});
 
 $(document).on('keydown', function(event) {
     switch(event.keyCode) {
