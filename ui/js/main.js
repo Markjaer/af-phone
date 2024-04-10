@@ -551,22 +551,28 @@ $(document).on('touchstart mousedown', '.position:not(.active) .phone-home-foote
     }
 });
 
-$(document).on('click', '.app', function(event) {
-    if (!AF.Settings.IsEditable && !AF.Settings.IsMoveable) {
-        var $target = $(this);
-        $(`.app-content`).removeClass('active');
-        $(`#${$($target).attr('id')}-page`).addClass('active');
-        setTimeout(() => {
-            $('body').addClass(`${$($target).attr('mode')}-mode`);
-        }, 250);
-    }
-});
-
-$(document).on('click', '.phone-home-footer.home', function() {
+$(document).on('touchstart mousedown', '.position:not(.active) .phone-home-footer.home', function(event) {
     $('.phone-home-footer').css("transition", "transform 0.3s").css("transform", "scale(1)");
     if (!AF.Settings.IsSwiping) {
         $('.app-content').removeClass('active');
         $('body').removeClass('light-mode');
+    }
+});
+
+$(document).on('click', '.app', function(event) {
+    if (!AF.Settings.IsEditable && !AF.Settings.IsMoveable) {
+        event.preventDefault();
+        
+        var $target = $(this);
+
+        $target.addClass('clicked');
+
+        $(`.app-content`).removeClass('active');
+        $(`#${$($target).attr('id')}-page`).addClass('active');
+        setTimeout(() => {
+            $('body').addClass(`${$($target).attr('mode')}-mode`);
+            $target.removeClass('clicked');
+        }, 250);
     }
 });
 
