@@ -557,12 +557,15 @@ body {
     row-gap: 2cqw;
     align-content: flex-start;
     width: 100%;
+    opacity: 0;
+    height: 100%;
     /* transition: right 250ms ease-in-out; */
 }
 
 .standard-page.active {
     display: flex;
     right: 0;
+    opacity: 1;
 }
 
 .start-navigation {
@@ -589,10 +592,11 @@ body {
 }
 
 .start-primary {
-    position: sticky;
+    /* position: sticky; */
     bottom: 0;
     left: 0;
     justify-content: center;
+    min-height: 58px;
 }
 
 .profile {

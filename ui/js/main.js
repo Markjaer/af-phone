@@ -526,9 +526,6 @@ AF.Functions = {
 }
 
 $(document).on('touchstart mousedown', '.phone.show .app-start', function(event) {
-    AF.Settings.IsMouseDown = true;
-    AF.Settings.StartX = event.type === 'touchstart' ? event.touches[0].clientX : event.clientX;
-
     if ($(event.target).closest('.app').length == 0) {
         console.log('making apps moveable');
 
@@ -581,10 +578,15 @@ $(document).on('touchstart mousedown', '.phone.show .app-start', function(event)
             }, 1);
         }
     }
+
+    if (!AF.Settings.IsMoveable && !AF.Settings.IsEditable) {
+        AF.Settings.IsMouseDown = true;
+        AF.Settings.StartX = event.type === 'touchstart' ? event.touches[0].clientX : event.clientX;
+    }
 });
 
 $(document).on('touchmove mousemove', function(event) {
-    if (AF.Settings.IsMouseDown) {
+    if (AF.Settings.IsMouseDown && !AF.Settings.IsEditable && !AF.Settings.IsMoveable) {
         let currentX;
         if (event.type === 'touchmove') {
             currentX = event.touches[0].clientX;
@@ -600,12 +602,14 @@ $(document).on('touchmove mousemove', function(event) {
 
         if (AF.Settings.InitialRight <= 0) {
             if ($('.standard-page.active').prev().length > 0 && $('.standard-page.active').prev().hasClass('standard-page')) {
+                $('.standard-page.active').prev().css('opacity', 1);
                 $('.standard-page.active').prev().css('right', '+' + ($('.standard-page.active').outerWidth() + AF.Settings.InitialRight) + 'px');
             } else {
                 AF.Settings.InitialRight += 1;
             }
         } else {
             if ($('.standard-page.active').next().length > 0 && $('.standard-page.active').next().hasClass('standard-page')) {
+                $('.standard-page.active').next().css('opacity', 1);
                 $('.standard-page.active').next().css('right', '-' + ($('.standard-page.active').outerWidth() - AF.Settings.InitialRight) + 'px');
             } else {
                 AF.Settings.InitialRight -= 1;
@@ -661,17 +665,18 @@ $(document).on('touchend mouseup', function(event) {
             if ($('.standard-page.active').prev().length > 0 && $('.standard-page.active').prev().hasClass('standard-page')) {
                 var $currentNav = $('[pages] .navigation-content .dots.active');
                 var $currentPage = $('.standard-page.active');
-
+                
                 if (AF.Settings.InitialRight <= (-AF.Settings.AppsContainerWidth / 2)) {
                     $currentNav.prev().addClass('active');
                     $currentNav.removeClass('active');
 
-                    $currentPage.animate({ right: -AF.Settings.AppsContainerWidth + 'px'}, 300);
+                    $currentPage.animate({ right: -AF.Settings.AppsContainerWidth + 'px', opacity: '0'}, 300);
                     $currentPage.prev().addClass('active');
                     $currentPage.prev().animate({ right: '0px'}, 300);
+                    $currentPage.css('opacity', 0);
                     $currentPage.removeClass('active');
                 } else {
-                    $currentPage.prev().animate({ right: +AF.Settings.AppsContainerWidth + 'px'}, 300);
+                    $currentPage.prev().animate({ right: +AF.Settings.AppsContainerWidth + 'px', opacity: '0'}, 300);
                     $('.standard-page.active').animate({ right: '0px'}, 300);
                 }
             } else {
@@ -686,12 +691,12 @@ $(document).on('touchend mouseup', function(event) {
                     $currentNav.next().addClass('active');
                     $currentNav.removeClass('active');
 
-                    $currentPage.animate({ right: +AF.Settings.AppsContainerWidth + 'px'}, 300);
+                    $currentPage.animate({ right: +AF.Settings.AppsContainerWidth + 'px', opacity: '0'}, 300);
                     $currentPage.next().addClass('active');
                     $currentPage.next().animate({ right: '0px'}, 300);
                     $currentPage.removeClass('active');
                 } else {
-                    $currentPage.next().animate({ right: -AF.Settings.AppsContainerWidth + 'px'}, 300);
+                    $currentPage.next().animate({ right: -AF.Settings.AppsContainerWidth + 'px', opacity: '0'}, 300);
                     $('.standard-page.active').animate({ right: '0px'}, 300);
                 }
             } else {
