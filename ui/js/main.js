@@ -6,8 +6,11 @@ AF.Settings = {
     MaxSlotsPrimary: 4, // Telefon slots som er i navigationen i bunden
 
     StartY: null,
+    StartX: null,
     InitialBottom: 0,
+    InitialRight: 0,
     PhoneContainerHeight: 0,
+    AppsContainerWidth: 0,
 
     MoveSortable1: null,
     MoveSortable2: null,
@@ -18,7 +21,8 @@ AF.Settings = {
     IsEditable: false,
     IsMoveable: false,
     IsSwiping: false,
-    HasMouseUp: false,
+    IsMouseDown: false,
+    IsMouseUp: false,
 }
 AF.Apps = [
     Settings = {
@@ -226,6 +230,102 @@ AF.Apps = [
         color: '#D6D6CB',
         icon: 'driverlicense.png',
         txt: 'Driver License',
+        primary: false,
+        slot: 14,
+    },
+    DriverLicense = {
+        app: 'driverlicense',
+        color: '#D6D6CB',
+        icon: 'driverlicense.png',
+        txt: 'Driver License',
+        primary: false,
+        slot: 14,
+    },
+    DriverLicense = {
+        app: 'driverlicense',
+        color: '#D6D6CB',
+        icon: 'driverlicense.png',
+        txt: 'Driver License',
+        primary: false,
+        slot: 14,
+    },
+    DriverLicense = {
+        app: 'driverlicense',
+        color: '#D6D6CB',
+        icon: 'driverlicense.png',
+        txt: 'Driver License',
+        primary: false,
+        slot: 14,
+    },
+    DriverLicense = {
+        app: 'driverlicense',
+        color: '#D6D6CB',
+        icon: 'driverlicense.png',
+        txt: 'Driver License',
+        primary: false,
+        slot: 14,
+    },
+    DriverLicense = {
+        app: 'driverlicense',
+        color: '#D6D6CB',
+        icon: 'driverlicense.png',
+        txt: 'Driver License',
+        primary: false,
+        slot: 14,
+    },
+    DriverLicense = {
+        app: 'driverlicense',
+        color: '#D6D6CB',
+        icon: 'driverlicense.png',
+        txt: 'Driver License',
+        primary: false,
+        slot: 14,
+    },
+    DriverLicense = {
+        app: 'driverlicense',
+        color: '#D6D6CB',
+        icon: 'driverlicense.png',
+        txt: 'Driver License',
+        primary: false,
+        slot: 14,
+    },
+    DriverLicense = {
+        app: 'driverlicense',
+        color: '#D6D6CB',
+        icon: 'driverlicense.png',
+        txt: 'Driver License',
+        primary: false,
+        slot: 14,
+    },
+    DriverLicense = {
+        app: 'driverlicense',
+        color: '#D6D6CB',
+        icon: 'driverlicense.png',
+        txt: 'Driver License',
+        primary: false,
+        slot: 14,
+    },
+    DriverLicense = {
+        app: 'driverlicense',
+        color: '#D6D6CB',
+        icon: 'driverlicense.png',
+        txt: 'Driver License',
+        primary: false,
+        slot: 14,
+    },
+    DriverLicense = {
+        app: 'driverlicense',
+        color: '#D6D6CB',
+        icon: 'driverlicense.png',
+        txt: 'Driver License',
+        primary: false,
+        slot: 14,
+    },
+    DriverLicense = {
+        app: 'driverlicense',
+        color: '#D6D6CB',
+        icon: 'driverlicense.png',
+        txt: 'Driver License',
         primary: true,
         slot: 4,
     },
@@ -247,6 +347,8 @@ AF.Functions = {
             AF.Functions.UpdateTimer();
         }, 1000);
         AF.Settings.PhoneContainerHeight = $(".phone-container").outerHeight();
+        AF.Settings.AppsContainerWidth = $(".app-start").outerWidth();
+        $("head link[rel='stylesheet']").last().after(`<style>.standard-page{right: -${AF.Settings.AppsContainerWidth}px;}</style>`);
     },
     SetPosition: function() {
         if (AF.Data.PhoneData.metadata) {
@@ -334,7 +436,7 @@ AF.Functions = {
             elm.removeClass('editable');
             AF.Settings.Interval = 0;
             AF.Settings.IsEditable = false;
-            AF.Settings.HasMouseUp = false;
+            AF.Settings.IsMouseUp = false;
             clearInterval(AF.Settings.IntervalId);
         });
     },
@@ -424,6 +526,9 @@ AF.Functions = {
 }
 
 $(document).on('touchstart mousedown', '.phone.show .app-start', function(event) {
+    AF.Settings.IsMouseDown = true;
+    AF.Settings.StartX = event.type === 'touchstart' ? event.touches[0].clientX : event.clientX;
+
     if ($(event.target).closest('.app').length == 0) {
         console.log('making apps moveable');
 
@@ -479,7 +584,40 @@ $(document).on('touchstart mousedown', '.phone.show .app-start', function(event)
 });
 
 $(document).on('touchmove mousemove', function(event) {
-    if (AF.Settings.IsEditable && !AF.Settings.IsMoveable && !AF.Settings.HasMouseUp) {
+    if (AF.Settings.IsMouseDown) {
+        let currentX;
+        if (event.type === 'touchmove') {
+            currentX = event.touches[0].clientX;
+        } else {
+            currentX = event.clientX;
+        }
+
+        let deltaX = currentX - AF.Settings.StartX;
+
+        AF.Settings.InitialRight -= deltaX;
+
+        AF.Settings.InitialRight = Math.min(AF.Settings.AppsContainerWidth, Math.max(-AF.Settings.AppsContainerWidth, AF.Settings.InitialRight));
+
+        if (AF.Settings.InitialRight <= 0) {
+            if ($('.standard-page.active').prev().length > 0 && $('.standard-page.active').prev().hasClass('standard-page')) {
+                $('.standard-page.active').prev().css('right', '+' + ($('.standard-page.active').outerWidth() + AF.Settings.InitialRight) + 'px');
+            } else {
+                AF.Settings.InitialRight += 1;
+            }
+        } else {
+            if ($('.standard-page.active').next().length > 0 && $('.standard-page.active').next().hasClass('standard-page')) {
+                $('.standard-page.active').next().css('right', '-' + ($('.standard-page.active').outerWidth() - AF.Settings.InitialRight) + 'px');
+            } else {
+                AF.Settings.InitialRight -= 1;
+            }
+        }
+
+        $('.standard-page.active').css('right', AF.Settings.InitialRight + 'px');
+
+        AF.Settings.StartX = currentX;
+    }
+
+    if (AF.Settings.IsEditable && !AF.Settings.IsMoveable && !AF.Settings.IsMouseUp) {
         if ($(event.target).closest('.app').length == 0) {
             event.preventDefault();
 
@@ -516,10 +654,60 @@ $(document).on('touchmove mousemove', function(event) {
 });
 
 $(document).on('touchend mouseup', function(event) {
-    if (AF.Settings.IsEditable) {
-        AF.Settings.HasMouseUp = true;
-    }
     clearInterval(AF.Settings.IntervalId);
+
+    if (AF.Settings.IsMouseDown) {
+        if (AF.Settings.InitialRight <= 0) { // SWIPE RIGHT
+            if ($('.standard-page.active').prev().length > 0 && $('.standard-page.active').prev().hasClass('standard-page')) {
+                var $currentNav = $('[pages] .navigation-content .dots.active');
+                var $currentPage = $('.standard-page.active');
+
+                if (AF.Settings.InitialRight <= (-AF.Settings.AppsContainerWidth / 2)) {
+                    $currentNav.prev().addClass('active');
+                    $currentNav.removeClass('active');
+
+                    $currentPage.animate({ right: -AF.Settings.AppsContainerWidth + 'px'}, 300);
+                    $currentPage.prev().addClass('active');
+                    $currentPage.prev().animate({ right: '0px'}, 300);
+                    $currentPage.removeClass('active');
+                } else {
+                    $currentPage.prev().animate({ right: +AF.Settings.AppsContainerWidth + 'px'}, 300);
+                    $('.standard-page.active').animate({ right: '0px'}, 300);
+                }
+            } else {
+                $('.standard-page.active').animate({ right: '0px'}, 300);
+            }
+        } else if (AF.Settings.InitialRight >= 0) { // SWIPE LEFT
+            if ($('.standard-page.active').next().length > 0 && $('.standard-page.active').next().hasClass('standard-page')) {
+                var $currentNav = $('[pages] .navigation-content .dots.active');
+                var $currentPage = $('.standard-page.active');
+
+                if (AF.Settings.InitialRight >= (AF.Settings.AppsContainerWidth / 2)) {
+                    $currentNav.next().addClass('active');
+                    $currentNav.removeClass('active');
+
+                    $currentPage.animate({ right: +AF.Settings.AppsContainerWidth + 'px'}, 300);
+                    $currentPage.next().addClass('active');
+                    $currentPage.next().animate({ right: '0px'}, 300);
+                    $currentPage.removeClass('active');
+                } else {
+                    $currentPage.next().animate({ right: -AF.Settings.AppsContainerWidth + 'px'}, 300);
+                    $('.standard-page.active').animate({ right: '0px'}, 300);
+                }
+            } else {
+                $('.standard-page.active').animate({ right: '0px'}, 300);
+            }
+        } else {
+            $('.standard-page.active').animate({ right: '0px'}, 300);
+        }
+
+        AF.Settings.InitialRight = 0;
+        AF.Settings.IsMouseDown = false;
+    }
+
+    if (AF.Settings.IsEditable) {
+        AF.Settings.IsMouseUp = true;
+    }
 
     if (AF.Settings.IsSwiping && !$('.position').hasClass('active')) {
         if (AF.Settings.InitialBottom >= (AF.Settings.PhoneContainerHeight / 2)) {

@@ -274,7 +274,7 @@ body {
 
 .phone-header .header-content {
     width: 100%;
-    padding: .5rem .5rem .25rem .5rem;
+    padding: 4cqw 4cqw 0 4cqw;
     font-size: .75rem;
     display: flex;
     gap: .5rem;
@@ -358,7 +358,7 @@ body {
     position: absolute;
     inset: 0;
     z-index: 1;
-    padding: 10cqw 0 4cqw 0;
+    padding: 12cqw 0 4cqw 0;
     display: flex;
     flex-direction: column;
 }
@@ -543,18 +543,26 @@ body {
 
 .start-standard {
     height: 100%;
+    /* overflow: hidden; */
+    position: relative;
+    /* overflow: auto; */
 }
 
 .standard-page {
-    display: none;
+    display: flex;
+    position: absolute;
+    inset: auto;
+    right: -1000px;
     flex-wrap: wrap;
     row-gap: 2cqw;
     align-content: flex-start;
     width: 100%;
+    /* transition: right 250ms ease-in-out; */
 }
 
 .standard-page.active {
     display: flex;
+    right: 0;
 }
 
 .start-navigation {
@@ -580,7 +588,12 @@ body {
     background-color: rgba(var(--white-color));
 }
 
-.start-primary {}
+.start-primary {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    justify-content: center;
+}
 
 .profile {
     width: 16cqw;
