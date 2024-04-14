@@ -430,9 +430,9 @@ AF.Functions = {
         AF.Settings.Interval = 0;
 
         elm.addClass('editable');
-        $('<div class="app-backdrop"></div>').insertBefore(elm);
+        $('.app-backdrop').addClass('show')
         $('.app-backdrop').on('click', function() {
-            $('.app-backdrop').remove();
+            $('.app-backdrop').removeClass('show');
             elm.removeClass('editable');
             AF.Settings.Interval = 0;
             AF.Settings.IsEditable = false;
@@ -556,7 +556,7 @@ $(document).on('touchstart mousedown', '.phone.show .app-start', function(event)
     } else {
         console.log('making apps editable');
 
-        $('.app-backdrop').remove();
+        $('.app-backdrop').removeClass('show');
         $('.app').removeClass('editable');
 
         AF.Settings.Interval = 0;
@@ -625,7 +625,7 @@ $(document).on('touchmove mousemove', function(event) {
         if ($(event.target).closest('.app').length == 0) {
             event.preventDefault();
 
-            $('.app-backdrop').remove();
+            $('.app-backdrop').removeClass('show');
             $('.app').removeClass('editable');
 
             AF.Settings.IsEditable = false;

@@ -357,7 +357,7 @@ body {
 .phone-content {
     position: absolute;
     inset: 0;
-    z-index: 1;
+    /* z-index: 1; */
     padding: 12cqw 0 4cqw 0;
     display: flex;
     flex-direction: column;
@@ -481,14 +481,21 @@ body {
 .app.editable {
     position: relative;
     transform: scale(1.2);
-    z-index: 2;
+    z-index: 6;
 }
 
 .app-backdrop {
     position: absolute;
     inset: 0;
     background: rgba(0, 0, 0, 50%);
-    z-index: 1;
+    z-index: -1;
+    opacity: 0;
+    transition: all 250ms ease-in-out;
+}
+
+.app-backdrop.show {
+    z-index: 5;
+    opacity: 1;
 }
 
 @keyframes shake {
