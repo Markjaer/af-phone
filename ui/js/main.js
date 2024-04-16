@@ -9,6 +9,7 @@ AF.Settings = {
     StartX: null,
     InitialBottom: 0,
     InitialRight: 0,
+    InitialRightMargin: 16,
     PhoneContainerHeight: 0,
     AppsContainerWidth: 0,
 
@@ -23,6 +24,7 @@ AF.Settings = {
     IsSwiping: false,
     IsMouseDown: false,
     IsMouseUp: false,
+    IsMouseMove: false,
 }
 AF.Apps = [
     Settings = {
@@ -426,97 +428,101 @@ AF.Functions = {
     AppsEditable: function (elm) {
         console.log("apps is editable");
         
-        AF.Settings.IsEditable = true;
-        AF.Settings.Interval = 0;
-
-        elm.addClass('editable');
-        $('.app-backdrop').addClass('show')
-        $('.app-backdrop').on('click', function() {
-            $('.app-backdrop').removeClass('show');
-            elm.removeClass('editable');
+        if (!AF.Settings.IsMouseMove) {
+            AF.Settings.IsEditable = true;
             AF.Settings.Interval = 0;
-            AF.Settings.IsEditable = false;
-            AF.Settings.IsMouseUp = false;
-            clearInterval(AF.Settings.IntervalId);
-        });
+    
+            elm.addClass('editable');
+            $('.app-backdrop').addClass('show')
+            $('.app-backdrop').on('click', function() {
+                $('.app-backdrop').removeClass('show');
+                elm.removeClass('editable');
+                AF.Settings.Interval = 0;
+                AF.Settings.IsEditable = false;
+                AF.Settings.IsMouseUp = false;
+                clearInterval(AF.Settings.IntervalId);
+            });
+        }
     },
     AppsMoveable: function () {
         console.log("apps is moveactive");
 
-        $('.app').addClass('shake');
+        if (!AF.Settings.IsMouseMove) {
+            $('.app').addClass('shake');
 
-        AF.Settings.IsMoveable = true;
-        AF.Settings.Interval = 0;
+            AF.Settings.IsMoveable = true;
+            AF.Settings.Interval = 0;
 
-        var sSlot = $('[standard-apps] .standard-page.active .app-case').length;
-        var pSlot = $('[primary-apps] .app-case').length;
+            var sSlot = $('[standard-apps] .standard-page.active .app-case').length;
+            var pSlot = $('[primary-apps] .app-case').length;
 
-        AF.Settings.MoveSortable1 = new Sortable($('[standard-apps] .standard-page.active')[0], {
-            group: {
-                name: 'shared',
-                put: function (to) {
-                    return sSlot < AF.Settings.MaxSlotsNonPrimary;
+            AF.Settings.MoveSortable1 = new Sortable($('[standard-apps] .standard-page.active')[0], {
+                group: {
+                    name: 'shared',
+                    put: function (to) {
+                        return sSlot < AF.Settings.MaxSlotsNonPrimary;
+                    }
+                },
+                swapThreshold: 1,
+                animation: 150,
+                onStart: function(event, ui) {
+                    console.log('moveSortable1 onStart');
+                    sSlot = $('[standard-apps] .standard-page.active .app-case').length;
+                    pSlot = $('[primary-apps] .app-case').length;
+                },
+                onChange: function(event, ui) {
+                    console.log('moveSortable1 onChange');
+                    sSlot = $('[standard-apps] .standard-page.active .app-case').length;
+                    pSlot = $('[primary-apps] .app-case').length;
+                },
+                onUpdate: function(event, ui) {
+                    console.log('moveSortable1 onUpdate');
+                    sSlot = $('[standard-apps] .standard-page.active .app-case').length;
+                    pSlot = $('[primary-apps] .app-case').length;
+                    // var data = Array.from($(this.el).find('.task.active')).map((element, key) => {
+                    //     var content = $(element).find('.task-counter').attr('data-tippy-content');
+                    //     $(element).find('.task-counter').attr('data-tippy-content', content.replace(content.match(/\d+/)[0], (key + 1)));
+                    //     return element.getAttribute('data-id');
+                    // });
                 }
-            },
-            swapThreshold: 1,
-            animation: 150,
-            onStart: function(event, ui) {
-                console.log('moveSortable1 onStart');
-                sSlot = $('[standard-apps] .standard-page.active .app-case').length;
-                pSlot = $('[primary-apps] .app-case').length;
-            },
-            onChange: function(event, ui) {
-                console.log('moveSortable1 onChange');
-                sSlot = $('[standard-apps] .standard-page.active .app-case').length;
-                pSlot = $('[primary-apps] .app-case').length;
-            },
-            onUpdate: function(event, ui) {
-                console.log('moveSortable1 onUpdate');
-                sSlot = $('[standard-apps] .standard-page.active .app-case').length;
-                pSlot = $('[primary-apps] .app-case').length;
-                // var data = Array.from($(this.el).find('.task.active')).map((element, key) => {
-                //     var content = $(element).find('.task-counter').attr('data-tippy-content');
-                //     $(element).find('.task-counter').attr('data-tippy-content', content.replace(content.match(/\d+/)[0], (key + 1)));
-                //     return element.getAttribute('data-id');
-                // });
-            }
-        });
-        AF.Settings.MoveSortable2 = new Sortable($('[primary-apps]')[0], {
-            group: {
-                name: 'shared',
-                put: function (to) {
-                    return pSlot < AF.Settings.MaxSlotsPrimary;
-                }
-            },
-            swapThreshold: 1,
-            animation: 150,
-            onStart: function(event, ui) {
-                console.log('moveSortable2 onStart');
-                sSlot = $('[standard-apps] .standard-page.active .app-case').length;
-                pSlot = $('[primary-apps] .app-case').length;
-            },
-            onChange: function(event, ui) {
-                console.log('moveSortable2 onChange');
-                sSlot = $('[standard-apps] .standard-page.active .app-case').length;
-                pSlot = $('[primary-apps] .app-case').length;
-            },
-            onUpdate: function(event, ui) {
-                console.log('moveSortable2 onUpdate');
-                sSlot = $('[standard-apps] .standard-page.active .app-case').length;
-                pSlot = $('[primary-apps] .app-case').length;
-                // var data = Array.from($(this.el).find('.task.active')).map((element, key) => {
-                //     var content = $(element).find('.task-counter').attr('data-tippy-content');
-                //     $(element).find('.task-counter').attr('data-tippy-content', content.replace(content.match(/\d+/)[0], (key + 1)));
-                //     return element.getAttribute('data-id');
-                // });
-            }
-        });
-        setTimeout(() => {
-            $('.app').each(function(index, elm) {
-                const delay = index * 100;
-                $(this).css('animation-delay', `${delay}ms`);
             });
-        }, 500);
+            AF.Settings.MoveSortable2 = new Sortable($('[primary-apps]')[0], {
+                group: {
+                    name: 'shared',
+                    put: function (to) {
+                        return pSlot < AF.Settings.MaxSlotsPrimary;
+                    }
+                },
+                swapThreshold: 1,
+                animation: 150,
+                onStart: function(event, ui) {
+                    console.log('moveSortable2 onStart');
+                    sSlot = $('[standard-apps] .standard-page.active .app-case').length;
+                    pSlot = $('[primary-apps] .app-case').length;
+                },
+                onChange: function(event, ui) {
+                    console.log('moveSortable2 onChange');
+                    sSlot = $('[standard-apps] .standard-page.active .app-case').length;
+                    pSlot = $('[primary-apps] .app-case').length;
+                },
+                onUpdate: function(event, ui) {
+                    console.log('moveSortable2 onUpdate');
+                    sSlot = $('[standard-apps] .standard-page.active .app-case').length;
+                    pSlot = $('[primary-apps] .app-case').length;
+                    // var data = Array.from($(this.el).find('.task.active')).map((element, key) => {
+                    //     var content = $(element).find('.task-counter').attr('data-tippy-content');
+                    //     $(element).find('.task-counter').attr('data-tippy-content', content.replace(content.match(/\d+/)[0], (key + 1)));
+                    //     return element.getAttribute('data-id');
+                    // });
+                }
+            });
+            setTimeout(() => {
+                $('.app').each(function(index, elm) {
+                    const delay = index * 100;
+                    $(this).css('animation-delay', `${delay}ms`);
+                });
+            }, 500);
+        }
     },
     Close: function () {
         $(APP).hide();
@@ -587,6 +593,7 @@ $(document).on('touchstart mousedown', '.phone.show .app-start', function(event)
 
 $(document).on('touchmove mousemove', function(event) {
     if (AF.Settings.IsMouseDown && !AF.Settings.IsEditable && !AF.Settings.IsMoveable) {
+        AF.Settings.IsMouseMove = true;
         let currentX;
         if (event.type === 'touchmove') {
             currentX = event.touches[0].clientX;
@@ -603,14 +610,14 @@ $(document).on('touchmove mousemove', function(event) {
         if (AF.Settings.InitialRight <= 0) {
             if ($('.standard-page.active').prev().length > 0 && $('.standard-page.active').prev().hasClass('standard-page')) {
                 $('.standard-page.active').prev().css('opacity', 1);
-                $('.standard-page.active').prev().css('right', '+' + ($('.standard-page.active').outerWidth() + AF.Settings.InitialRight) + 'px');
+                $('.standard-page.active').prev().css('right', '+' + ($('.standard-page.active').outerWidth() + AF.Settings.InitialRight + AF.Settings.InitialRightMargin) + 'px');
             } else {
                 AF.Settings.InitialRight += 1;
             }
         } else {
             if ($('.standard-page.active').next().length > 0 && $('.standard-page.active').next().hasClass('standard-page')) {
                 $('.standard-page.active').next().css('opacity', 1);
-                $('.standard-page.active').next().css('right', '-' + ($('.standard-page.active').outerWidth() - AF.Settings.InitialRight) + 'px');
+                $('.standard-page.active').next().css('right', '-' + ($('.standard-page.active').outerWidth() - AF.Settings.InitialRight + AF.Settings.InitialRightMargin) + 'px');
             } else {
                 AF.Settings.InitialRight -= 1;
             }
@@ -708,6 +715,7 @@ $(document).on('touchend mouseup', function(event) {
 
         AF.Settings.InitialRight = 0;
         AF.Settings.IsMouseDown = false;
+        AF.Settings.IsMouseMove = false;
     }
 
     if (AF.Settings.IsEditable) {
