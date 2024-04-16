@@ -340,6 +340,7 @@ AF.Data = {
 
 AF.Functions = {
     Open: function () {
+        $(APP).show();
         $(APP).addClass('open');
         console.log("open", AF.Data)
 
@@ -369,7 +370,7 @@ AF.Functions = {
     },
     GetApps: function (key, item, type) {
         var mode = 'dark';
-        var icon = (item?.icon?.includes(".")) ? `<img src="./images/apps/${item?.icon}" draggable="false" width="100%" style="height: 15cqw;width: 15cqw;border-radius: 3.8cqw;box-shadow:0 0 15px 0px rgba(0, 0, 0, 25%);" />` : `<div class="rounded-3 p-2" style="background-color: ${item?.color};"><i class="${item?.icon} fs-4 d-flex justify-content-center"></i></div>`;
+        var icon = (item?.icon?.includes(".")) ? `<img src="./files/images/apps/${item?.icon}" draggable="false" width="100%" style="height: 15cqw;width: 15cqw;border-radius: 3.8cqw;box-shadow:0 0 15px 0px rgba(0, 0, 0, 25%);" />` : `<div class="rounded-3 p-2" style="background-color: ${item?.color};"><i class="${item?.icon} fs-4 d-flex justify-content-center"></i></div>`;
         return `
             <div class="app-case w-25 text-center" id="${type.toString()+'-'+key}">
                 <div class="app" id="${item?.app}" mode="${mode}" style="margin: 0 .5cqw;">
@@ -525,9 +526,9 @@ AF.Functions = {
         }
     },
     Close: function () {
+        $(APP).removeClass('open');
         $(APP).hide();
         $.post(`https://${GetParentResourceName()}/Close`);
-        console.log("close")
     },
 }
 

@@ -66,9 +66,11 @@ local function OpenPhone()
                 Apps = Config.Apps,
                 PlayerId = GetPlayerServerId(PlayerId())
             })
+            QBCore.Functions.Notify('Telefon åbnet', 'success')
+        else
+            QBCore.Functions.Notify('Du har ikke en telefon', 'error')
         end
     end)
-    QBCore.Functions.Notify('Telefon åbnet', 'success')
 end
 
 -- Close Phone

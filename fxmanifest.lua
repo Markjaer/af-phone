@@ -21,6 +21,6 @@ server_scripts {
 files {
     'ui/main.html',
     'ui/css/*.css',
-    'ui/files/images/*.png',
+    'ui/files/images/*',
     'ui/js/*.js',
 }
