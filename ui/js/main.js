@@ -378,7 +378,7 @@ AF.Functions = {
                         <span style="font-size: 6cqw;">-</span>
                     </span>
                     ${icon}
-                    <p class="mt-0 text-truncate" style="font-size: 3.5cqw;text-shadow: 0 0 3px rgba(0, 0, 0, 25%);">${item?.txt}</p>
+                    ${item?.primary ? `` : `<p class="mt-0 text-truncate" style="font-size: 3.5cqw;text-shadow: 0 0 3px rgba(0, 0, 0, 25%);">${item?.txt}</p>`}
                 </div>
             </div>
         `;
@@ -757,6 +757,8 @@ $(document).on('touchstart mousedown', '.position:not(.active) .phone-home-foote
     $('.phone-home-footer').css("transition", "transform 0.3s").css("transform", "scale(1)");
     if (!AF.Settings.IsSwiping) {
         $('.app-content').removeClass('active');
+        $('.phone-home-footer').removeClass('active');
+        $('.phone-home-footer').hide();
         $('body').removeClass('light-mode');
     }
 });
@@ -771,9 +773,11 @@ $(document).on('click', '.app', function(event) {
 
         $(`.app-content`).removeClass('active');
         $(`#${$($target).attr('id')}-page`).addClass('active');
+        $('.phone-home-footer').show();
         setTimeout(() => {
             $('body').addClass(`${$($target).attr('mode')}-mode`);
             $target.removeClass('clicked');
+            $('.phone-home-footer').addClass('active');
         }, 250);
     }
 });
