@@ -768,11 +768,12 @@ $(document).on('click', '.app', function(event) {
         event.preventDefault();
         
         var $target = $(this);
+        var $page = $(`#${$($target).attr('id')}-page`);
 
         $target.addClass('clicked');
 
         $(`.app-content`).removeClass('active');
-        $(`#${$($target).attr('id')}-page`).addClass('active');
+        $page.addClass('active');
         $('.phone-home-footer').show();
         setTimeout(() => {
             $('body').addClass(`${$($target).attr('mode')}-mode`);

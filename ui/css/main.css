@@ -536,24 +536,24 @@ body {
 
 .phone-scroll {
     overflow: auto;
-    /* scrollbar-width: 1px; */
+    /* scrollbar-width: none; */
 }
 
-.phone-scroll::-webkit-scrollbar {
+::-webkit-scrollbar {
     -webkit-appearance: none;
 }
 
-.phone-scroll::-webkit-scrollbar:vertical {
+::-webkit-scrollbar:vertical {
     width: 3px;
 }
 
-.phone-scroll::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background-color: #a5a5a5be;
     border-radius: 20px;
     border: 25px solid transparent;
 }
 
-.phone-scroll::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
     background-color: transparent;
     border: 25px solid transparent;
 }
@@ -574,12 +574,13 @@ body {
 }
 
 .app-content .title {
-    font-size: 7cqw;
+    text-align: center;
+    font-size: 5cqw;
     position: sticky;
     top: 0;
     z-index: 4;
     background: #000;
-    padding-bottom: 5cqw;
+    padding-bottom: 4cqw;
 }
 
 .app-content * {
@@ -715,4 +716,54 @@ body {
 
 .list-group-item {
     padding: .5rem;
+}
+
+.settings-yellow {
+    --bs-bg-opacity: 1;
+    background-color: rgba(255,159,10,var(--bs-bg-opacity));
+}
+
+.settings-lightblue {
+    --bs-bg-opacity: 1;
+    background-color: rgba(74,136,166,var(--bs-bg-opacity));
+}
+
+.settings-blue {
+    --bs-bg-opacity: 1;
+    background-color: rgba(0,122,255,var(--bs-bg-opacity));
+}
+
+.settings-green {
+    --bs-bg-opacity: 1;
+    background-color: rgba(47,209,89,var(--bs-bg-opacity));
+}
+
+.settings-red {
+    --bs-bg-opacity: 1;
+    background-color: rgba(255,69,57,var(--bs-bg-opacity));
+}
+
+.settings-pink {
+    --bs-bg-opacity: 1;
+    background-color: rgba(255,55,94,var(--bs-bg-opacity));
+}
+
+.settings-purple {
+    --bs-bg-opacity: 1;
+    background-color: rgba(94,91,230,var(--bs-bg-opacity));
+}
+
+.settings-grey {
+    --bs-bg-opacity: 1;
+    background-color: rgba(143,142,148,var(--bs-bg-opacity));
+}
+
+.settings-white {
+    --bs-bg-opacity: 1;
+    background-color: rgba(255,255,255,var(--bs-bg-opacity));
+}
+
+.settings-black {
+    --bs-bg-opacity: 1;
+    background-color: rgba(0,0,0,var(--bs-bg-opacity));
 }
